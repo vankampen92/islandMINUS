@@ -1,5 +1,5 @@
 ################################################# 
-EXTRA_LIBRARY_PATH=-L./ -L/usr/lib/ -L/usr/local/lib/ 
+EXTRA_LIBRARY_PATH=-L./  
 EXTRA_INCLUDE_PATH=-I./ 
 #################################################
 RSH=R_SHLIB
