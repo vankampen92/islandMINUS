@@ -16,25 +16,27 @@ da_Read_Data_Files(DATA_DIR, Names, S, H = TRUE)
 \item{H}{TRUE/FALSE (with or without column names)}
 }
 \description{
-\code{da_Read_Data_Files} reads files from DATA_DIR into a list of 
-data frames. The full path of the directory should be specificied in 
-the DATA_DIR argument. For instance, if DATA_DIR = "[YOUR_DATA]", 
-then the function will read S files from "${HOME}/[YOUR_DATA]/" directory. Files 
-names are given in the \code{Names} character array of length S. The data frames 
+\code{da_Read_Data_Files} reads files from DATA_DIR into a list of
+data frames. The full path of the directory should be specificied in
+the DATA_DIR argument. For instance, if DATA_DIR = "[YOUR_DATA]",
+then the function will read S files from "${HOME}/[YOUR_DATA]/" directory. Files
+names are given in the \code{Names} character array of length S. The data frames
 created are ready to feed the other package functions.
 }
 \examples{
+\dontrun{
 HOME      <- Sys.getenv("HOME")
 DATA_DIR  <- "/PROJECT_ISLAND_BIOGEOGRAPHY/DATA_ILLES_LACADIVES/"
 DATA_DIR  <- paste(HOME, DATA_DIR , sep="");
 Names = c("matrix_Data_156Sp_Header_TRUE.dat");
 S <- 1
 Data <- da_Read_Data_Files(DATA_DIR, Names, S, H=TRUE)
-Names = c("MacKenzie_Data_Matrix_AGT_156Sp_Header_TRUE.dat", 
-"MacKenzie_Data_Matrix_KAD_156Sp_Header_TRUE.dat", 
+Names = c("MacKenzie_Data_Matrix_AGT_156Sp_Header_TRUE.dat",
+"MacKenzie_Data_Matrix_KAD_156Sp_Header_TRUE.dat",
 "MacKenzie_Data_Matrix_KVT_156Sp_Header_TRUE.dat");
-S <- 3 
+S <- 3
 Data <- da_Read_Data_Files(DATA_DIR, Names, S, H=TRUE)
+}
 }
 \keyword{da_MacKenzie_mle.R}
 \keyword{read.table,}
