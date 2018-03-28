@@ -3,7 +3,6 @@
 for f in ./src/*.o; do
 rm -f $f
 done
-rm ./src/Makevars
 for f in ./*.tex; do
 rm -f $f
 done
