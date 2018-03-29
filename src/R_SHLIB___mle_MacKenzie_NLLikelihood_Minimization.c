@@ -81,7 +81,17 @@ void R_SHLIB___mle_MacKenzie_NLLikelihood_Minimization(double * Presence_Data,
 
   k = 0;
   for( m=0; m < (* S); m++ ) 
-        for( j=0; j < (* N); j++ )  Presence[m][j] = Presence_Data[k++];
+    for( j=0; j < (* N); j++ ) {
+      if( Presence[m][j] == 0 || Presence[m][j] == 1)
+            Presence[m][j] = Presence_Data[k++];
+      else {
+	Rprintf(" Error in the initial Presence Data\n");
+	Rprintf(" Some matrix entries are not either 0 or 1\n");
+	Rprintf(" This function does not allow missing values (no flags are allowed)\n");
+	Rprintf(" The program will exit\n");
+	error(0, 0, "Program has aborted");
+      }
+    }
 
   SP_Matrix_Data  * Data = (SP_Matrix_Data *)calloc( 1, sizeof(SP_Matrix_Data) );
   Data->Presence = Presence;

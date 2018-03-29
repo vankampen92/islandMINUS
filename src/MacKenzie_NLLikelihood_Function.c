@@ -118,14 +118,14 @@ double MacKenzie_NLLikelihood_Calculation ( double ** Presence_Data, int No_of_S
 	Y = 0.0; 
 	if (Presence[0] == 0) {
 	  m = 0;
-	  for(n=0; n<Transects[0]; n++) if (Presence_Data[j][n] == 0) m++;
+	  for(n=0; n<Transects[0]; n++) if (Presence_Data[j][n] == 0.0) m++;
 	  if (m != Transects[0]) error(0,0,"Number of Transects does not match");
 	
 	  Y += logl( 1.0 - (long double)Phi_0 ); 
 	}
 	else if (Presence[0] == 1) {
 	  m = 0;
-	  for(n=0; n<Transects[0]; n++) if (Presence_Data[j][n] == 0) m++;
+	  for(n=0; n<Transects[0]; n++) if (Presence_Data[j][n] == 0.0) m++;
 	  
 	  Y += (long double)m * logl( 1.0 - (long double)Detectability_Value );
 	  
@@ -157,12 +157,12 @@ double MacKenzie_NLLikelihood_Calculation ( double ** Presence_Data, int No_of_S
 	  if( Presence[i] == 0 ) {
 	    Y += 0.0; // log(1.0) = 0.0;
 	    m = 0;
-	    for(n = n_0; n<(n_0+Transects[i]); n++) if (Presence_Data[j][n] == 0) m++;
+	    for(n = n_0; n<(n_0+Transects[i]); n++) if (Presence_Data[j][n] == 0.0) m++;
 	    if ( m != Transects[i] ) error(0,0,"Number of Transects do not match");
 	  }
 	  else if (Presence[i] == 1) {
 	    m = 0;
-	    for(n = n_0; n<(n_0+Transects[i]); n++) if (Presence_Data[j][n] == 0) m++;
+	    for(n = n_0; n<(n_0+Transects[i]); n++) if (Presence_Data[j][n] == 0.0) m++;
 	    
 	    Y += (long double)m * logl(1.0 - (long double)Detectability_Value );
 	    
