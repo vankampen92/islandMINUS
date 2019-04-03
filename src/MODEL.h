@@ -26,7 +26,7 @@
 
 // Curiously R.h is incompatible with the C general header complex.h
 // If you are not requiring funcions on the complex plane, you are OK!!!
-// #include <R.h>
+#include <R.h>
 
 #define MAX(A,B) ((A)>(B)? A:B)
 #define MIN(A,B) ((A)<(B)? A:B)

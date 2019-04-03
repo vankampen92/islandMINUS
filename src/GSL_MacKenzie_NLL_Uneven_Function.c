@@ -2,31 +2,31 @@
 
 double GSL_MacKenzie_NLL_Uneven_Function ( const gsl_vector * x, void * Par )
 {
-  /* This function evaluates MacKenzie likelihood on a per row basis. 
-     This is so required because the time and transect structure of the data matrix 
-     differs from row to row. When data matrix keeps the same time structure for all 
-     rows, the equivalent likelihood function to call is: 
- 
-     GSL_MacKenzie_NLLikelihood_Function(const gsl_vector * x, void * Par); 
-  */ 
+  /* This function evaluates MacKenzie likelihood on a per row basis.
+     This is so required because the time and transect structure of the data matrix
+     differs from row to row. When data matrix keeps the same time structure for all
+     rows, the equivalent likelihood function to call is:
+
+     GSL_MacKenzie_NLLikelihood_Function(const gsl_vector * x, void * Par);
+  */
   int i,j;
   double NLL;
   int S,n,N;
   int * Transects;
   double * Time;
-  
+
   Parameter_Fitting * F     = (Parameter_Fitting *)Par;
-  Parameter_Space   * Space = F->Space; 
+  Parameter_Space   * Space = F->Space;
   Parameter_Model   * P     = F->P;
-  
+
   int No_of_SPECIES   = F->P->No_of_SPECIES;
 
-  if ( F->P->No_of_SPECIES != F->Data->No_of_SPECIES ) 
+  if ( F->P->No_of_SPECIES != F->Data->No_of_SPECIES )
     // error(0,0, "Number of Species does not match: program aborted");
-    { printf("Number of Species does not match: program aborted"); exit(1); } 
-      
+    { Rprintf("Number of Species does not match: program aborted"); exit(1); }
+
   Vector_Entries_into_Parameter_Model ( x, P, 
-					Space->Parameter_Index, 
+					Space->Parameter_Index,
 					Space->No_of_PARAMETERS );
 
   double Colonization_Rate   = P->Colonization_Rate;
@@ -34,22 +34,22 @@ double GSL_MacKenzie_NLL_Uneven_Function ( const gsl_vector * x, void * Par )
   double Detectability_Value = P->Detectability_Value;
   double Phi_0               = P->Phi_0;
 
-  if (F->P->RATES == 0) { 
-      // Input parameters are transition probabilities 
-      // and should be converted into true rates before 
+  if (F->P->RATES == 0) {
+      // Input parameters are transition probabilities
+      // and should be converted into true rates before
       // calling the neg likelihood evaluation function
       Probability_Rates( Colonization_Rate, Extinction_Rate,
 			 &Colonization_Rate, &Extinction_Rate,
 			 1.0 ) ;
       // Intersampling Time is assumed to be 1.0.
   }
-  
+
   NLL = 0.0;
-  for( i= 0; i<No_of_SPECIES; i++ ) { 
+  for( i= 0; i<No_of_SPECIES; i++ ) {
 
     Transects  = F->Data->Sp_Transects[i];
     Time       = F->Data->Sp_Time[i];
-    S          = 1; 
+    S          = 1;
     n          = F->Data->No_Sp_Time[i];
     N          = F->Data->Sp_Total_No_Transects[i];
 
@@ -61,22 +61,22 @@ double GSL_MacKenzie_NLL_Uneven_Function ( const gsl_vector * x, void * Par )
      *
      *              MacKenzie_NLLikelihood_Calculation(...)
      *
-     * is in the file: 
-     *  
-     *              MacKenzie_NLLikelihood_Function.c 
+     * is in the file:
      *
-     * where the whole likelikehood evaluation is actually performed!!!  
+     *              MacKenzie_NLLikelihood_Function.c
+     *
+     * where the whole likelikehood evaluation is actually performed!!!
      */
-    
+
     NLL += MacKenzie_NLLikelihood_Calculation( Data, S, N,
-					       Time, Transects, n, 
-					       Colonization_Rate, 
+					       Time, Transects, n,
+					       Colonization_Rate,
 					       Extinction_Rate,
 					       Detectability_Value,
 					       Phi_0 );
-    free(Data[0]); 
-    free(Data); 
+    free(Data[0]);
+    free(Data);
   }
-  
+
   return(NLL);
 }

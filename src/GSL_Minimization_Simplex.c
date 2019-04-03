@@ -3,9 +3,9 @@
 /* #define TOLERANCE 1.0E-08        */
 /* #define MAX_No_of_ITERATIONS 100 */
 
-double GSL_Minimization_Simplex (Parameter_Fitting * F, 
-				 gsl_vector * Initial_Guess, 
-				 gsl_vector * Solution, 
+double GSL_Minimization_Simplex (Parameter_Fitting * F,
+				 gsl_vector * Initial_Guess,
+				 gsl_vector * Solution,
 				 double ( * Function )( const gsl_vector * , void * ) )
 {
   int i;
@@ -15,10 +15,10 @@ double GSL_Minimization_Simplex (Parameter_Fitting * F,
   Parameter_Space * Space  = F->Space;
   // Parameter_Model * P      = F->P;
 
-  const gsl_multimin_fminimizer_type *T = 
+  const gsl_multimin_fminimizer_type *T =
     gsl_multimin_fminimizer_nmsimplex;
   gsl_multimin_fminimizer *s = NULL;
-  gsl_vector *ss; 
+  gsl_vector *ss;
   gsl_multimin_function minex_func;
 
   size_t iter = 0;
@@ -26,19 +26,19 @@ double GSL_Minimization_Simplex (Parameter_Fitting * F,
   double size;
 
   int No_of_PARAMETERS     = Space->No_of_PARAMETERS;
-  double TOLERANCE         = Space->TOLERANCE; 
-  int MAX_No_of_ITERATIONS = Space->MAX_No_of_ITERATIONS; 
-  
+  double TOLERANCE         = Space->TOLERANCE;
+  int MAX_No_of_ITERATIONS = Space->MAX_No_of_ITERATIONS;
+
   /* Set initial step sizes */
   ss = gsl_vector_alloc ( No_of_PARAMETERS );
   // gsl_vector_set_all (ss, 0.01);
   gsl_vector_memcpy (ss, Space->Accuracy );
 
   /* Initialize method and iterate */
- 
-  if ( F->Verbose == 1 ) // printf("No_of_PARAMETERS = %d\n", No_of_PARAMETERS); 
-    printf("No_of_PARAMETERS = %d\n", No_of_PARAMETERS);
-  
+
+  if ( F->Verbose == 1 ) // printf("No_of_PARAMETERS = %d\n", No_of_PARAMETERS);
+    Rprintf("No_of_PARAMETERS = %d\n", No_of_PARAMETERS);
+
   minex_func.n = No_of_PARAMETERS;
   minex_func.f = Function;
   minex_func.params = (void *)F;
@@ -51,45 +51,45 @@ double GSL_Minimization_Simplex (Parameter_Fitting * F,
     {
       iter++;
       status = gsl_multimin_fminimizer_iterate(s);
-      
-      if (status) 
+
+      if (status)
         break;
 
       size = gsl_multimin_fminimizer_size (s);
       status = gsl_multimin_test_size (size, TOLERANCE);
 
-       if (F->Verbose == 1) { 
+       if (F->Verbose == 1) {
 	 if (status == GSL_SUCCESS)
 	   {
 	     // printf("converged to minimum at\n");
-	     printf("converged to minimum at\n");
+	     Rprintf("converged to minimum at\n");
 	   }
-     
+
 	 // printf("%5d ", (int)iter);
-	 printf("%5d ", (int)iter);
+	 Rprintf("%5d ", (int)iter);
 	 // for( i=0; i<Space->No_of_PARAMETERS; i++ ) {
 	 // key  = Space->Parameter_Index[i];
-	 // printf("%s = %10.3e\t", P->Symbol[key], gsl_vector_get (s->x, i) ); 
+	 // printf("%s = %10.3e\t", P->Symbol[key], gsl_vector_get (s->x, i) );
 
 	 for( i=0; i<No_of_PARAMETERS; i++ ) {
 	   if (i == 0) //printf("Colonization = %10.3e; ", gsl_vector_get (s->x, i) );
-	     printf("Colonization = %10.3e; ", gsl_vector_get (s->x, i) ); 
+	     Rprintf("Colonization (C) = %10.3e; ", gsl_vector_get (s->x, i) );
 	   if (i == 1) //printf("Extinction   = %10.3e; ", gsl_vector_get (s->x, i) );
-	     printf("Extinction   = %10.3e; ", gsl_vector_get (s->x, i) ); 
+	     Rprintf("Extinction (E)  = %10.3e; ", gsl_vector_get (s->x, i) );
 	   if (i == 2) //printf("Detectability = %10.3e; ", gsl_vector_get (s->x, i) );
-	     printf("Detectability = %10.3e; ", gsl_vector_get (s->x, i) ); 
+	     Rprintf("Detectability (D) = %10.3e; ", gsl_vector_get (s->x, i) );
 	   if (i == 3) //printf("Phi_0   = %10.3e\t", gsl_vector_get (s->x, i) );
-	     printf("Phi_0   = %10.3e\t", gsl_vector_get (s->x, i) ); 
+	     Rprintf("Phi_0 (P)  = %10.3e\t", gsl_vector_get (s->x, i) );
 	 }
 	 //printf("f() = %7.3f size = %.3f\n", s->fval, size);
-	 printf("f() = %7.3f size = %.3f\n", s->fval, size);
+	 Rprintf("NLL(C,E,D,P|Data) = %7.3f size = %.3f\n", s->fval, size);
        }
 
     }
   while (status == GSL_CONTINUE && iter < MAX_No_of_ITERATIONS );
-     
-  gsl_vector_memcpy (Solution, s->x ); 
-  value = s->fval; // Min Value !!! 
+
+  gsl_vector_memcpy (Solution, s->x );
+  value = s->fval; // Min Value !!!
 
   gsl_vector_free(ss);
   gsl_multimin_fminimizer_free (s);

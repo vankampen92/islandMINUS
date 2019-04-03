@@ -74,20 +74,20 @@ void Model_Selection_AIC_Latex_Table( char ** Name,
 
   for(i=0; i<No_of_SPECIES; i++) {
     // printf(" Partition %d-th: Number of estimated parameters: %d\n", i, G[i]*2);
-    printf(" Partition %d-th: Number of estimated parameters: %d\n", i, G[i]*2);
+    Rprintf(" Partition %d-th: Number of estimated parameters: %d\n", i, G[i]*2);
     for(j=0; j<G[i]; j++) {
       // printf("{ ");
-      printf("{ ");
-      for(k=0; k<K[i][j]; k++) printf("%s ", Name[PARTITION[i][j][k]]);
+      Rprintf("{ ");
+      for(k=0; k<K[i][j]; k++) Rprintf("%s ", Name[PARTITION[i][j][k]]);
       // printf("} ");
-      printf("} ");
+      Rprintf("} ");
     }
     /* printf("\n");                                                                       */
     /* printf(" NLL = %g\t AIC = %g\tAIC (corrected) = %g\t", NLL[i], AIC[i], AIC_c[i]);   */
     /* printf(" AIC_d = %g\t AIC_w = %g\n", AIC_d[i], AIC_w[i] );                          */
-    printf("\n");
-    printf(" NLL = %g\t AIC = %g\tAIC (corrected) = %g\t", NLL[i], AIC[i], AIC_c[i]);
-    printf(" AIC_d = %g\t AIC_w = %g\n", AIC_d[i], AIC_w[i] );
+    Rprintf("\n");
+    Rprintf(" NLL = %g\t AIC = %g\tAIC (corrected) = %g\t", NLL[i], AIC[i], AIC_c[i]);
+    Rprintf(" AIC_d = %g\t AIC_w = %g\n", AIC_d[i], AIC_w[i] );
   }
 
   double ** VALUE = (double **)calloc( No_of_SPECIES, sizeof(double *) );
@@ -137,9 +137,9 @@ void Model_Selection_AIC_Latex_Table( char ** Name,
       break;
     default:
       // printf(" Index j = %d out of range (0,...,5) (Model Selection Latex Table Function)\n", j);
-      printf(" Index j = %d out of range (0,...,5) (Model Selection Latex Table Function)\n", j);
+      Rprintf(" Index j = %d out of range (0,...,5) (Model Selection Latex Table Function)\n", j);
       // error(0,0, "Program aborted");
-      printf("Program aborted"); exit(1);
+      Rprintf("Program aborted"); exit(1);
     }
     // printf("Using point p for something: %s", p); printf("\n");
   }
@@ -174,9 +174,9 @@ void Model_Selection_AIC_Latex_Table( char ** Name,
       break;
     default:
       //printf(" Index i = %d out of range (0,1,2) (Model Selection Latex Table Function)\n", j);
-      printf(" Index i = %d out of range (0,1,2) (Model Selection Latex Table Function)\n", j);
+      Rprintf(" Index i = %d out of range (0,1,2) (Model Selection Latex Table Function)\n", j);
       // error(0,0,"Program aborted");
-      printf("Program aborted"); exit(1);
+      Rprintf("Program aborted"); exit(1);
     }
     // printf("Using point p for something: %s", p); printf("\n");
   }
