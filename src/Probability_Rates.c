@@ -23,7 +23,7 @@ void Probability_Rates( double C,
   R_C = C/E;
   
   // double l = log( 1.0 - (C+E) );
-  // Rprintf (" puto log( 1.0 - (C+E) ) = %g\n", l );
+  // printf (" puto log( 1.0 - (C+E) ) = %g\n", l );
   // getchar();
 
   (* c) = - 1.0/DT * log(1.0 - (C+E)) /( 1.0 + R_E ); 

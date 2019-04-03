@@ -13,7 +13,9 @@ double GSL_NLLikelihood_Function ( const gsl_vector * x, void * Par )
 {
   Parameter_Fitting * F = (Parameter_Fitting *)Par;
 
-  if( F->P->No_of_SPECIES != F->Data->No_of_SPECIES ) error(0,0,"Number of Species does not match: program aborted");
+  if( F->P->No_of_SPECIES != F->Data->No_of_SPECIES )
+    // error(0,0,"Number of Species does not match: program aborted");
+    { printf("Number of Species does not match: program aborted"); exit(1); }
 
   Time_Control * T    = F->P->Time;
   int No_of_SPECIES   = F->P->No_of_SPECIES;
@@ -101,13 +103,20 @@ double NLLikelihood_Calculation ( int n, Time_Control * Time,
 	}
 	else {
 #if defined CHECKING_MATRIX_ENTRIES
-	  Rprintf(" Error in initial Presence Data\n");
-	  Rprintf(" when evaluation Neg LogLikelihood\n");
-	  Rprintf(" in function GSL_NLLikelihood_Function(...)\n");
-	  Rprintf(" Some matrix entries are not either 0 or 1\n");
-	  Rprintf(" (see GSL_NLLikelihood_Function.c)\n");
-	  Rprintf(" The program will exit\n");
-	  error(0, 0, "Program has aborted");
+	  /* printf(" Error in initial Presence Data\n");             */
+	  /* printf(" when evaluation Neg LogLikelihood\n");          */
+	  /* printf(" in function GSL_NLLikelihood_Function(...)\n"); */
+	  /* printf(" Some matrix entries are not either 0 or 1\n");  */
+	  /* printf(" (see GSL_NLLikelihood_Function.c)\n");          */
+	  /* printf(" The program will exit\n");                      */
+	  printf(" Error in initial Presence Data\n");
+	  printf(" when evaluation Neg LogLikelihood\n");
+	  printf(" in function GSL_NLLikelihood_Function(...)\n");
+	  printf(" Some matrix entries are not either 0 or 1\n");
+	  printf(" (see GSL_NLLikelihood_Function.c)\n");
+	  printf(" The program will exit\n");
+	  // error(0, 0, "Program has aborted");
+	  printf("Program has aborted"); exit(1); 
 #endif
 	}
         NLL += X;	
@@ -180,11 +189,15 @@ double NLLikelihood_Calculation_Transition_Probabilities ( int n, Time_Control *
 	  
 	}
 	else {
-	  if( P_k_1 != 0.1 ) error(0,0,"Missing Value Problem: program aborted");
+	  if( P_k_1 != 0.1 )
+	    // error(0,0,"Missing Value Problem: program aborted");
+	    { printf("Missing Value Problem: program aborted"); exit(1); }
 	}	  
       }
       else {
-	  if( P_k_0 != 0.1 ) error(0,0,"Missing Value Problem: program aborted");
+	  if( P_k_0 != 0.1 )
+	    // error(0,0,"Missing Value Problem: program aborted");
+	    { printf("Missing Value Problem: program aborted"); exit(1); }
       }
     }
   }

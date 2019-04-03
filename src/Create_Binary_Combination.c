@@ -33,10 +33,10 @@ void int_buffer_rec(int ** Number_List, int N,
     }
     else { 
         for(i = 0; i < length; ++i) {
-            // Rprintf("%u", number[i]);
+            // printf("%u", number[i]);
 	    Number_List[m][i]=number[i];
         }
-        // Rprintf("\n");
+        // printf("\n");
         m++;
     }
 

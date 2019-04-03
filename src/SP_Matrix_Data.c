@@ -1,17 +1,19 @@
 #include <MODEL.h>
 
-SP_Matrix_Data * SP_Matrix_Data_Alloc( int No_of_SITES,
-				       int No_of_TIMES,
-				       int Total_No_of_TRANSECTS )
+void SP_Matrix_Data_Alloc( int No_of_SITES,
+			   int No_of_TIMES,
+			   int Total_No_of_TRANSECTS,
+			   SP_Matrix_Data * D)
 {
-  SP_Matrix_Data * D =  (SP_Matrix_Data *)calloc( 1, sizeof(SP_Matrix_Data) );
   int j;
+
+  // SP_Matrix_Data * D = (SP_Matrix_Data *)calloc( 1, sizeof(SP_Matrix_Data) );
 
   D->Presence = (double **)calloc(No_of_SITES, sizeof(double *));
   for (j=0; j<No_of_SITES; j++)
-      D->Presence[j] = (double *)calloc(No_of_TIMES, sizeof(double ));
+      D->Presence[j] = (double *)calloc(Total_No_of_TRANSECTS, sizeof(double ));
 
-  D->Time_Vector = (double *)calloc(Total_No_of_TRANSECTS, sizeof(double));
+  D->Time_Vector = (double *)calloc(No_of_TIMES, sizeof(double));
   D->Transects   = (int *)calloc(No_of_TIMES, sizeof(int));
 
   D->Sp_Time = (double **)calloc(No_of_SITES, sizeof(double *));
@@ -28,7 +30,7 @@ SP_Matrix_Data * SP_Matrix_Data_Alloc( int No_of_SITES,
 
   D->Name = (char *)calloc(50, sizeof(char) );
 
-  return(D);
+  // return(D);
 }
 
 void SP_Matrix_Data_Free( SP_Matrix_Data * D)
@@ -55,7 +57,7 @@ void SP_Matrix_Data_Free( SP_Matrix_Data * D)
   free (D);
 }
 
-void SP_Matrix_Data_Setup(int No_of_SITES, int No_of_COLUMNS,
+void SP_Matrix_Data_Setup(int No_of_SITES, int No_of_TIMES,
 			  int Total_No_of_TRANSECTS,
 			  SP_Matrix_Data * D, double ** Presence,
 			  double * Time_Vector, double ** Sp_Time, int * No_Sp_Time,
@@ -69,7 +71,7 @@ void SP_Matrix_Data_Setup(int No_of_SITES, int No_of_COLUMNS,
                                   // No_of_SITES and No_of_SPECIES are synonimous
                                   // interchangeable members of the data structure
                                   // Their values should match.
-  D->No_of_TIMES = No_of_COLUMNS;
+  D->No_of_TIMES = No_of_TIMES;
   // No of sampling times: Number of columns (if there are no replicates per
   // sampling time).
   D->Total_No_of_TRANSECTS = Total_No_of_TRANSECTS;
@@ -77,17 +79,20 @@ void SP_Matrix_Data_Setup(int No_of_SITES, int No_of_COLUMNS,
 
   for (i=0; i<No_of_SITES; i++){
     D->No_Sp_Time[i] = No_Sp_Time[i];
-    for (j=0; j<No_of_COLUMNS; j++) {
+    for (j=0; j<Total_No_of_TRANSECTS; j++) {
       D->Presence[i][j] = Presence[i][j];
       D->Sp_Time[i][j]  = Sp_Time[i][j];
     }
   }
 
-  for (j=0; j<No_of_COLUMNS; j++) D->Transects[j] = Transects[j];
+  for (j=0; j<No_of_TIMES; j++) D->Transects[j] = Transects[j];
 
   for (j=0; j<Total_No_of_TRANSECTS; j++) D->Time_Vector[j] = Time_Vector[j];
 
-  memcpy( D->Name, Sp_Name, strlen(Sp_Name)+1 );
+  D->Name[0]='\0';
+	// char * p = strcat( D->Name, Sp_Name );
+  strcat( D->Name, Sp_Name );
+	// memcpy( D->Name, Sp_Name, strlen(Sp_Name)+1 );
 }
 
 void SP_Matrix_Data_Uneven_Setup( SP_Matrix_Data * D, double ** Presence,
@@ -142,17 +147,17 @@ void SP_Matrix_Data_Write( SP_Matrix_Data * D )
 
   for(j=0; j<No_of_SITES; j++) {
 
-    Rprintf(" Sampling Times (%d-th row) = %d\t Time(No of Transects) = {",
+    printf(" Sampling Times (%d-th row) = %d\t Time(No of Transects) = {",
 	   j, D->No_Sp_Time[j] );
     for(k=0; k<D->No_Sp_Time[j]; k++)
-      Rprintf(" %g(%d) ", D->Sp_Time[j][k], D->Sp_Transects[j][k]);
-    Rprintf("}\n");
+      printf(" %g(%d) ", D->Sp_Time[j][k], D->Sp_Transects[j][k]);
+    printf("}\n");
 
     m = 0;
-    Rprintf(" { ");
+    printf(" { ");
     for(k=0; k<D->No_Sp_Time[j]; k++)
-      for(n=0; n<D->Sp_Transects[j][k]; n++) Rprintf("%g ", D->Presence[j][m++]);
-    Rprintf("}\n");
+      for(n=0; n<D->Sp_Transects[j][k]; n++) printf("%g ", D->Presence[j][m++]);
+    printf("}\n");
   }
-  Rprintf("\n\n");
+  printf("\n\n");
 }

@@ -26,7 +26,9 @@ double GSL_NLL_Function_Uneven( const gsl_vector * x, void * Par )
   Parameter_Fitting * F = (Parameter_Fitting *)Par;
   
   F->P->Time          = &Time;
-  if( F->P->No_of_SPECIES != F->Data->No_of_SPECIES ) error(0,0,"Number of Species does not match: program aborted");
+  if( F->P->No_of_SPECIES != F->Data->No_of_SPECIES )
+    //error(0,0,"Number of Species does not match: program aborted");
+    { printf("Number of Species does not match: program aborted"); exit(1); }
 
   int No_of_SPECIES        = F->P->No_of_SPECIES;
   double Colonization_Rate = gsl_vector_get( x, 0 );
