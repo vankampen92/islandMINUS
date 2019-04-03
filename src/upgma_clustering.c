@@ -15,7 +15,7 @@ double Average_Node_Distance( node * N_1, node * N_2,
       sp_i = N_1->Species[i];
       sp_j = N_2->Species[j];
 
-      if(sp_i >= S || sp_j >= S) { Rprintf("Program aborted\n"); exit(1); }
+      if(sp_i >= S || sp_j >= S) { Rprintf("Program aborted\n"); error(0,0,"Program aborted"); }
 
       if ( sp_i > sp_j ) Ave_D += D[sp_i][ sp_j];
       else               Ave_D += D[sp_j][ sp_i];
@@ -94,7 +94,7 @@ void upgma_clustering(double ** D, int No_of_SPECIES,
     for(i=0; i<T[List[i_MIN]]->No_of_SPECIES; i++) T[ * No_of_NODES ]->Species[S++] = T[List[i_MIN]]->Species[i];
     for(i=0; i<T[List[j_MIN]]->No_of_SPECIES; i++) T[ * No_of_NODES ]->Species[S++] = T[List[j_MIN]]->Species[i];
     T[ * No_of_NODES ]->No_of_SPECIES =  S;
-    if ( S != (T[List[i_MIN]]->No_of_SPECIES + T[List[j_MIN]]->No_of_SPECIES) ) { Rprintf("Program aborted\n"); exit(1); }
+    if ( S != (T[List[i_MIN]]->No_of_SPECIES + T[List[j_MIN]]->No_of_SPECIES) ) { Rprintf("Program aborted\n"); error(0,0,"Program aborted"); }
 
     Node_List[0] = (* No_of_NODES);
 
@@ -113,7 +113,7 @@ void upgma_clustering(double ** D, int No_of_SPECIES,
 
     if (m != N-2)
       // error(0,0,"Program aborted");
-      { Rprintf("Program aborted"); exit(1); }
+      { Rprintf("Program will abort..."); error(0,0,"Program aborted"); }
 
     k = 1;
     for(i=0; i<m; i++) {

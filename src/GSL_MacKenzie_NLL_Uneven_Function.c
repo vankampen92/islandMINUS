@@ -23,9 +23,9 @@ double GSL_MacKenzie_NLL_Uneven_Function ( const gsl_vector * x, void * Par )
 
   if ( F->P->No_of_SPECIES != F->Data->No_of_SPECIES )
     // error(0,0, "Number of Species does not match: program aborted");
-    { Rprintf("Number of Species does not match: program aborted"); exit(1); }
+    { Rprintf("Number of Species does not match: "); error(0,0,"Program aborted"); }
 
-  Vector_Entries_into_Parameter_Model ( x, P, 
+  Vector_Entries_into_Parameter_Model ( x, P,
 					Space->Parameter_Index,
 					Space->No_of_PARAMETERS );
 

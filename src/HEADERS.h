@@ -22,6 +22,8 @@
 #include <gsl/gsl_multimin.h> 
 #include <gsl/gsl_histogram.h>
 
+#include <R.h>
+
 #define MAX(A,B) ((A)>(B)? A:B)
 #define MIN(A,B) ((A)<(B)? A:B)
 #endif

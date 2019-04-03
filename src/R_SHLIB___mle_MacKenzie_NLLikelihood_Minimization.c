@@ -91,7 +91,7 @@ void R_SHLIB___mle_MacKenzie_NLLikelihood_Minimization(double * Presence_Data,
         Rprintf(" This function does not allow missing values (no flags are allowed)\n");
         Rprintf(" The program will exit\n");
         // error(0, 0, "Program has aborted");
-        Rprintf("Program has aborted\n"); exit(1);
+        Rprintf("Program has aborted\n"); error(0,0,"Program aborted");
       }
     }
 

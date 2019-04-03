@@ -7,8 +7,8 @@ double GSL_MacKenzie_NLLikelihood_Function ( const gsl_vector * x, void * Par )
   Parameter_Model   * P     = F->P;
 
   if ( F->P->No_of_SPECIES != F->Data->No_of_SPECIES )
-    //error(0,0, "Number of Species does not match: program aborted");
-    { Rprintf("Number of Species does not match: program aborted"); exit(1); }
+    //printf("Number of Species does not match: program aborted"); exit(1);
+    { Rprintf("Number of Species does not match: "); error(0,0,"Program aborted"); }
 
   int * Transects     = F->Data->Transects;
   double * T          = F->Data->Time_Vector;

@@ -149,7 +149,7 @@ void MODEL_SELECTION_UPGMA_R_SHLIB( double Colonization_Rate, double * C_Range,
   for(i=0; i<No_of_SPECIES; i++)
     if( General_No_of_SAMPLING_TIMES != Data[i]->No_of_TIMES )
 		// error(0, 0,"Number of Sampling Times do not match: program aborted");
-		{ Rprintf("Number of Sampling Times does not match: program aborted"); exit(1); }
+		{ Rprintf("Number of Sampling Times does not match: program aborted"); error(0,0,"Program aborted"); }
 		/* Calculating total number of rows of the presence matrix corresponding
      to the j-th group of the i-th partition: R[i][j] */
   int ** R          = (int **)calloc( No_of_SPECIES, sizeof(int *) );
@@ -241,7 +241,7 @@ void MODEL_SELECTION_UPGMA_R_SHLIB( double Colonization_Rate, double * C_Range,
 	    m++;
 	  }
 	}
-	if ( R[i][j] != m ) { Rprintf("Program aborted\n"); exit(1); }
+	if ( R[i][j] != m ) { Rprintf("Program aborted\n"); error(0,0,"Program aborted"); }
       }
       if( (*Verbose) == 1) Rprintf("\n");
       /*     E N D : --------------------------------------------------------
@@ -260,7 +260,7 @@ void MODEL_SELECTION_UPGMA_R_SHLIB( double Colonization_Rate, double * C_Range,
 	No_of_TRANSITIONS = 0;
 	for( k=0; k<R[i][j]; k++ ) {
 
-	  if(No_of_Sp_Times[j][k] <= 1) { Rprintf("Program aborted\n"); exit(1); }
+	  if(No_of_Sp_Times[j][k] <= 1) { Rprintf("Program aborted\n"); error(0,0,"Program aborted"); }
 
 	  if( (*Verbose) == 1 ) Rprintf(" Times:\t");
 	  for(n=0; n<No_of_Sp_Times[j][k]; n++)
@@ -281,7 +281,7 @@ void MODEL_SELECTION_UPGMA_R_SHLIB( double Colonization_Rate, double * C_Range,
 
 	  if( N00 + N01 + N10 + N11 != No_of_TRANSITIONS )
 		// error(0, 0,"Number of Transititions do not sum up");
-		{ Rprintf("Number of Transititions do not sum up"); exit(1); }
+		{ Rprintf("Number of Transititions do not sum up"); error(0,0,"Program aborted"); }
 
 	  if( (*Verbose) == 1 )
 	    Rprintf(" Total No of TRANSITIONS (Partition: %d-th: Group %d-th) = %d\n",

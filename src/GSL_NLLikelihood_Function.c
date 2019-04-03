@@ -15,7 +15,7 @@ double GSL_NLLikelihood_Function ( const gsl_vector * x, void * Par )
 
   if( F->P->No_of_SPECIES != F->Data->No_of_SPECIES )
     // error(0,0,"Number of Species does not match: program aborted");
-    { Rprintf("Number of Species does not match: program aborted"); exit(1); }
+    { Rprintf("Number of Species does not match: "); error(0,0,"Program aborted"); }
 
   Time_Control * T    = F->P->Time;
   int No_of_SPECIES   = F->P->No_of_SPECIES;
@@ -116,7 +116,7 @@ double NLLikelihood_Calculation ( int n, Time_Control * Time,
 	  Rprintf(" (see GSL_NLLikelihood_Function.c)\n");
 	  Rprintf(" The program will exit\n");
 	  // error(0, 0, "Program has aborted");
-	  Rprintf("Program has aborted"); exit(1);
+	  Rprintf("Program has aborted: "); error(0,0,"in NLLikelihood_Calculation");
 #endif
 	}
         NLL += X;
@@ -186,18 +186,18 @@ double NLLikelihood_Calculation_Transition_Probabilities ( int n, Time_Control *
 	  k_1 = (int)Presence_Data[j][i];
 
 	  X += log(TM[k_1][k_0]);
-	  
+
 	}
 	else {
 	  if( P_k_1 != 0.1 )
 	    // error(0,0,"Missing Value Problem: program aborted");
-	    { Rprintf("Missing Value Problem: program aborted"); exit(1); }
+	    { Rprintf("Missing Value Problem: "); error(0,0,"Program aborted"); }
 	}
       }
       else {
 	  if( P_k_0 != 0.1 )
 	    // error(0,0,"Missing Value Problem: program aborted");
-	    { Rprintf("Missing Value Problem: program aborted"); exit(1); }
+	    { Rprintf("Missing Value Problem: "); error(0,0,"Program aborted"); }
       }
     }
   }
