@@ -147,17 +147,17 @@ void SP_Matrix_Data_Write( SP_Matrix_Data * D )
 
   for(j=0; j<No_of_SITES; j++) {
 
-    Rprintf(" Sampling Times (%d-th row) = %d\t Time(No of Transects) = {",
+    printf(" Sampling Times (%d-th row) = %d\t Time(No of Transects) = {",
 	   j, D->No_Sp_Time[j] );
     for(k=0; k<D->No_Sp_Time[j]; k++)
       printf(" %g(%d) ", D->Sp_Time[j][k], D->Sp_Transects[j][k]);
-    Rprintf("}\n");
+    printf("}\n");
 
     m = 0;
-    Rprintf(" { ");
+    printf(" { ");
     for(k=0; k<D->No_Sp_Time[j]; k++)
       for(n=0; n<D->Sp_Transects[j][k]; n++) printf("%g ", D->Presence[j][m++]);
-    Rprintf("}\n");
+    printf("}\n");
   }
-  Rprintf("\n\n");
+  printf("\n\n");
 }

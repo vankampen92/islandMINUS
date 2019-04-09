@@ -118,7 +118,7 @@ void mle_MacKenzie_Uneven_Matrix_R_SHLIB( double ** Presence, int S, int N,
   else if ( (*Minimization) == 0 )
     (* Value) = GSL_MacKenzie_NLL_Uneven_Function( x, F );
   else
-    Rprintf(" Error in 1/0 Minimization input argument!\n ---> Minimization = %d\n",
+    printf(" Error in 1/0 Minimization input argument!\n ---> Minimization = %d\n",
            (*Minimization) );
 
   Vector_Entries_into_Parameter_Model ( x, P,

@@ -15,7 +15,7 @@ double Average_Node_Distance( node * N_1, node * N_2,
       sp_i = N_1->Species[i];
       sp_j = N_2->Species[j];
 
-      if(sp_i >= S || sp_j >= S) { Rprintf("Program aborted\n"); error(0,0,"Program aborted"); }
+      if(sp_i >= S || sp_j >= S) { printf("Program aborted\n"); IO_ERROR(0,0,"Program aborted"); }
 
       if ( sp_i > sp_j ) Ave_D += D[sp_i][ sp_j];
       else               Ave_D += D[sp_j][ sp_i];
@@ -32,8 +32,8 @@ void Print_Triangular_Matrix( double ** distance, int N )
 
   for(i=1; i<N; i++) {
     for(j=0; j<i; j++)
-       Rprintf(" [ d(%d, %d) = %g ]", i,j, distance[i][j] );
-    Rprintf("\n");
+       printf(" [ d(%d, %d) = %g ]", i,j, distance[i][j] );
+    printf("\n");
   }
 }
 
@@ -94,7 +94,7 @@ void upgma_clustering(double ** D, int No_of_SPECIES,
     for(i=0; i<T[List[i_MIN]]->No_of_SPECIES; i++) T[ * No_of_NODES ]->Species[S++] = T[List[i_MIN]]->Species[i];
     for(i=0; i<T[List[j_MIN]]->No_of_SPECIES; i++) T[ * No_of_NODES ]->Species[S++] = T[List[j_MIN]]->Species[i];
     T[ * No_of_NODES ]->No_of_SPECIES =  S;
-    if ( S != (T[List[i_MIN]]->No_of_SPECIES + T[List[j_MIN]]->No_of_SPECIES) ) { Rprintf("Program aborted\n"); error(0,0,"Program aborted"); }
+    if ( S != (T[List[i_MIN]]->No_of_SPECIES + T[List[j_MIN]]->No_of_SPECIES) ) { printf("Program aborted\n"); IO_ERROR(0,0,"Program aborted"); }
 
     Node_List[0] = (* No_of_NODES);
 
@@ -112,8 +112,8 @@ void upgma_clustering(double ** D, int No_of_SPECIES,
     }
 
     if (m != N-2)
-      // error(0,0,"Program aborted");
-      { Rprintf("Program will abort..."); error(0,0,"Program aborted"); }
+      // IO_ERROR(0,0,"Program aborted");
+      { printf("Program will abort..."); IO_ERROR(0,0,"Program aborted"); }
 
     k = 1;
     for(i=0; i<m; i++) {
@@ -133,7 +133,7 @@ void upgma_clustering(double ** D, int No_of_SPECIES,
 
 #if defined VERBOSE
     Print_Triangular_Matrix( distance, * n );
-    Rprintf("--------------------------------\n\n");
+    printf("--------------------------------\n\n");
 #endif
     upgma_clustering( D, No_of_SPECIES,
 		      distance, n, T, No_of_NODES, Node_List );
@@ -173,9 +173,9 @@ void print_preorder(node * tree)
 
     if (tree)
     {
-        Rprintf("d = %g\t",tree->d);
-	for (i=0; i< tree->No_of_SPECIES; i++) Rprintf("%d ", tree->Species[i]);
-	Rprintf("\n");
+        printf("d = %g\t",tree->d);
+	for (i=0; i< tree->No_of_SPECIES; i++) printf("%d ", tree->Species[i]);
+	printf("\n");
         print_preorder(tree->left);
         print_preorder(tree->right);
     }
@@ -188,9 +188,9 @@ void print_inorder(node * tree)
     if (tree)
     {
         print_inorder(tree->left);
-        Rprintf("d = %g\t",tree->d);
-	for (i=0; i< tree->No_of_SPECIES; i++) Rprintf("%d ", tree->Species[i]);
-	Rprintf("\n");
+        printf("d = %g\t",tree->d);
+	for (i=0; i< tree->No_of_SPECIES; i++) printf("%d ", tree->Species[i]);
+	printf("\n");
         print_inorder(tree->right);
     }
 }
@@ -203,9 +203,9 @@ void print_postorder(node * tree)
     {
         print_postorder(tree->left);
         print_postorder(tree->right);
-        Rprintf("d = %g\t",tree->d);
-	for (i=0; i< tree->No_of_SPECIES; i++) Rprintf("%d ", tree->Species[i]);
-	Rprintf("\n");
+        printf("d = %g\t",tree->d);
+	for (i=0; i< tree->No_of_SPECIES; i++) printf("%d ", tree->Species[i]);
+	printf("\n");
     }
 }
 

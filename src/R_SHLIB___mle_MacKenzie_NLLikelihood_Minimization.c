@@ -86,12 +86,12 @@ void R_SHLIB___mle_MacKenzie_NLLikelihood_Minimization(double * Presence_Data,
       if( Presence[m][j] == 0 || Presence[m][j] == 1)
             k++;
       else {
-        Rprintf(" Error in the initial Presence Data\n");
-        Rprintf(" Some matrix entries are not either 0 or 1\n");
-        Rprintf(" This function does not allow missing values (no flags are allowed)\n");
-        Rprintf(" The program will exit\n");
-        // error(0, 0, "Program has aborted");
-        Rprintf("Program has aborted\n"); error(0,0,"Program aborted");
+        printf(" Error in the initial Presence Data\n");
+        printf(" Some matrix entries are not either 0 or 1\n");
+        printf(" This function does not allow missing values (no flags are allowed)\n");
+        printf(" The program will exit\n");
+        // IO_ERROR(0, 0, "Program has aborted");
+        printf("Program has aborted\n"); IO_ERROR(0,0,"Program aborted");
       }
     }
 
@@ -158,7 +158,7 @@ void R_SHLIB___mle_MacKenzie_NLLikelihood_Minimization(double * Presence_Data,
   else if ( (*Minimization) == 0 )
     (* Value) = GSL_MacKenzie_NLLikelihood_Function(x, F);
   else
-    Rprintf(" Error in 1/0 Minimization input argument!\n ---> Minimization = %d\n",
+    printf(" Error in 1/0 Minimization input argument!\n ---> Minimization = %d\n",
 	   (*Minimization) );
 
   Vector_Entries_into_Parameter_Model ( x, P,

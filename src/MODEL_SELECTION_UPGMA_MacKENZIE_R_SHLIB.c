@@ -115,17 +115,17 @@ void MODEL_SELECTION_UPGMA_MacKENZIE_R_SHLIB(double Colonization_Rate, double * 
   UPGMA_CLUSTERING_PARTITION( Distance_Matrix, No_of_SPECIES,
 			      PARTITION, G, K );
   for(i=0; i<No_of_SPECIES; i++) {
-    if( (*Verbose) == 1 ) Rprintf(" %dth Partition is made up by %d subsets: ",
+    if( (*Verbose) == 1 ) printf(" %dth Partition is made up by %d subsets: ",
 				 i, G[i]);
     for(j=0; j<G[i]; j++) {
-      if( (*Verbose) == 1 ) Rprintf("{ ");
+      if( (*Verbose) == 1 ) printf("{ ");
       for(k=0; k<K[i][j]; k++) {
 	n = PARTITION[i][j][k];
-	if( (*Verbose) == 1 ) Rprintf("%s ", Data[n]->Name);
+	if( (*Verbose) == 1 ) printf("%s ", Data[n]->Name);
       }
-      if( (*Verbose) == 1 ) Rprintf("} ");
+      if( (*Verbose) == 1 ) printf("} ");
     }
-    if( (*Verbose) == 1 ) Rprintf("\n");
+    if( (*Verbose) == 1 ) printf("\n");
   }
   /*     E N D : -----------------------------------------------------
    */
@@ -236,13 +236,13 @@ void MODEL_SELECTION_UPGMA_MacKENZIE_R_SHLIB(double Colonization_Rate, double * 
        Building Partition_Matrices associated to each group for every
        partition. In particular, here, associated to the i-th partition.
     */
-    if( (*Verbose) == 1 ) Rprintf(" %dth Partition is made up by %d subsets: ",
+    if( (*Verbose) == 1 ) printf(" %dth Partition is made up by %d subsets: ",
 				 i, G[i]);
     for(j=0; j<G[i]; j++) {
-      if( (*Verbose) == 1 ) Rprintf("{ ");
+      if( (*Verbose) == 1 ) printf("{ ");
       for(k=0; k<K[i][j]; k++)
-	if( (*Verbose) == 1 ) Rprintf("%d ", PARTITION[i][j][k]);
-      if( (*Verbose) == 1 ) Rprintf("} ");
+	if( (*Verbose) == 1 ) printf("%d ", PARTITION[i][j][k]);
+      if( (*Verbose) == 1 ) printf("} ");
       m = 0;
       for(k=0; k<K[i][j]; k++) {
 	n = PARTITION[i][j][k];
@@ -253,9 +253,9 @@ void MODEL_SELECTION_UPGMA_MacKENZIE_R_SHLIB(double Colonization_Rate, double * 
 	  m++;
 	}
       }
-      if( R[i][j] != m ) { Rprintf("Program aborted\n"); error(0,0,"Program aborted"); }
+      if( R[i][j] != m ) { printf("Program aborted\n"); IO_ERROR(0,0,"Program aborted"); }
     }
-    if( (*Verbose) == 1) Rprintf("\n");
+    if( (*Verbose) == 1) printf("\n");
     /*     E N D : --------------------------------------------------------
      */
 
@@ -282,27 +282,27 @@ void MODEL_SELECTION_UPGMA_MacKENZIE_R_SHLIB(double Colonization_Rate, double * 
 	}
 
       }
-      if( R[i][j] != m ) { Rprintf("Program aborted\n"); error(0,0,"Program aborted"); } // assert( R[i][j] == m );
+      if( R[i][j] != m ) { printf("Program aborted\n"); IO_ERROR(0,0,"Program aborted"); } // assert( R[i][j] == m );
 
-      if( (*Verbose) == 1) Rprintf("\n");
+      if( (*Verbose) == 1) printf("\n");
       m = 0;
       for( k=0; k<K[i][j]; k++ ) {
 	n = PARTITION[i][j][k];
 	for(l=0; l<Data[n]->No_of_SITES; l++) {
-	  if( (*Verbose) == 1 ) Rprintf(" Times:\t");
+	  if( (*Verbose) == 1 ) printf(" Times:\t");
 	  for(s=0; s<Data[n]->No_Sp_Time[l]; s++){
-	    if( (*Verbose) == 1 ) Rprintf("%g ", Sp_Time_Vector[j][m][s]);
+	    if( (*Verbose) == 1 ) printf("%g ", Sp_Time_Vector[j][m][s]);
 	  }
-	  if( (*Verbose) == 1 ) Rprintf("\n");
-	  if( (*Verbose) == 1 ) Rprintf(" (1/0):\t");
+	  if( (*Verbose) == 1 ) printf("\n");
+	  if( (*Verbose) == 1 ) printf(" (1/0):\t");
 	  for(s=0; s<Data[n]->Sp_Total_No_Transects[l]; s++) {
-	    if( (*Verbose) == 1 ) Rprintf("%g ", Partition_Presence[i][j][m][s]);
+	    if( (*Verbose) == 1 ) printf("%g ", Partition_Presence[i][j][m][s]);
 	  }
-	  if( (*Verbose) == 1 ) Rprintf("\n");
+	  if( (*Verbose) == 1 ) printf("\n");
 	  m++;
 	}
       }
-      if( R[i][j] != m ) { Rprintf("Program aborted\n"); error(0,0,"Program aborted"); } // assert( R[i][j] == m );
+      if( R[i][j] != m ) { printf("Program aborted\n"); IO_ERROR(0,0,"Program aborted"); } // assert( R[i][j] == m );
       // if( (*Verbose) == 1 )  getchar();
     }
     /*     E N D : ---------------------------------------------------------*/
@@ -339,29 +339,29 @@ void MODEL_SELECTION_UPGMA_MacKENZIE_R_SHLIB(double Colonization_Rate, double * 
       /* if( (*Verbose) == 1) printf("Partition: %d-th: Group %d-th:", i,j );              */
       /* if( (*Verbose) == 1) printf(" NLL (C = %g, E = %g, D = %g, P = %g) = %g\n",   */
       /* 				   COL[i][j], EXT[i][j], DTC[i][j], P_0[i][j], NLL[i][j] );               */
-      Rprintf("Partition: %d-th: Group %d-th:", i,j );
-      Rprintf(" NLL (C = %g, E = %g, D = %g, P = %g) = %g\n",
+      printf("Partition: %d-th: Group %d-th:", i,j );
+      printf(" NLL (C = %g, E = %g, D = %g, P = %g) = %g\n",
 	      COL[i][j], EXT[i][j], DTC[i][j], P_0[i][j], NLL[i][j] );
     }
 
-    if( (*Verbose) == 1 ) Rprintf(" %dth Partition (%d subsets): ", i, G[i]);
+    if( (*Verbose) == 1 ) printf(" %dth Partition (%d subsets): ", i, G[i]);
     for(j=0; j<G[i]; j++) {
-      if( (*Verbose) == 1 ) Rprintf("{ ");
-      for(k=0; k<K[i][j]; k++) if( (*Verbose) == 1 ) Rprintf("%d ", PARTITION[i][j][k]);
-      if( (*Verbose) == 1 ) Rprintf("} ");
+      if( (*Verbose) == 1 ) printf("{ ");
+      for(k=0; k<K[i][j]; k++) if( (*Verbose) == 1 ) printf("%d ", PARTITION[i][j][k]);
+      if( (*Verbose) == 1 ) printf("} ");
     }
-    if( (*Verbose) == 1 ) Rprintf("\n");
-    if( (*Verbose) == 1 ) Rprintf(" The total negative loglikelihood of partition %dth:\n", i);
-    if( (*Verbose) == 1 ) Rprintf(" NLogL(M | %d-th Partition) = %g\n",
+    if( (*Verbose) == 1 ) printf("\n");
+    if( (*Verbose) == 1 ) printf(" The total negative loglikelihood of partition %dth:\n", i);
+    if( (*Verbose) == 1 ) printf(" NLogL(M | %d-th Partition) = %g\n",
 				 i, MODEL_NLL[i]);
-    if( (*Verbose) == 1 ) Rprintf(" The total number of transtions, i.e., the total number of factors in the multiplicative likelihood is: %d\n",
+    if( (*Verbose) == 1 ) printf(" The total number of transtions, i.e., the total number of factors in the multiplicative likelihood is: %d\n",
 				  Total_No_of_TRANSITIONS);
 
     int No_of_Estimated_Parameters = G[i] * (* No_of_PARAMETERS);
     double Ka = (double)No_of_Estimated_Parameters;
     MODEL_AIC[i] = 2.0 * MODEL_NLL[i] + 2.0 * Ka;
     MODEL_AIC_c[i] = MODEL_AIC[i] +  2.0 * Ka * (Ka + 1) / ((double)Total_No_of_TRANSITIONS - Ka - 1.0);
-    if( (*Verbose) == 1 ) Rprintf(" Partition %d-th: Number of estimated parameters: %d\n AIC = %g\tAIC (corrected) = %g\n",
+    if( (*Verbose) == 1 ) printf(" Partition %d-th: Number of estimated parameters: %d\n AIC = %g\tAIC (corrected) = %g\n",
 				 i, No_of_Estimated_Parameters,
 				 MODEL_AIC[i], MODEL_AIC_c[i]);
     //getchar();

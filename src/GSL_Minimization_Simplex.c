@@ -37,7 +37,7 @@ double GSL_Minimization_Simplex (Parameter_Fitting * F,
   /* Initialize method and iterate */
 
   if ( F->Verbose == 1 ) // printf("No_of_PARAMETERS = %d\n", No_of_PARAMETERS);
-    Rprintf("No_of_PARAMETERS = %d\n", No_of_PARAMETERS);
+    printf("No_of_PARAMETERS = %d\n", No_of_PARAMETERS);
 
   minex_func.n = No_of_PARAMETERS;
   minex_func.f = Function;
@@ -62,27 +62,27 @@ double GSL_Minimization_Simplex (Parameter_Fitting * F,
 	 if (status == GSL_SUCCESS)
 	   {
 	     // printf("converged to minimum at\n");
-	     Rprintf("converged to minimum at\n");
+	     printf("converged to minimum at\n");
 	   }
 
 	 // printf("%5d ", (int)iter);
-	 Rprintf("%5d ", (int)iter);
+	 printf("%5d ", (int)iter);
 	 // for( i=0; i<Space->No_of_PARAMETERS; i++ ) {
 	 // key  = Space->Parameter_Index[i];
 	 // printf("%s = %10.3e\t", P->Symbol[key], gsl_vector_get (s->x, i) );
 
 	 for( i=0; i<No_of_PARAMETERS; i++ ) {
 	   if (i == 0) //printf("Colonization = %10.3e; ", gsl_vector_get (s->x, i) );
-	     Rprintf("Colonization (C) = %10.3e; ", gsl_vector_get (s->x, i) );
+	     printf("Colonization (C) = %10.3e; ", gsl_vector_get (s->x, i) );
 	   if (i == 1) //printf("Extinction   = %10.3e; ", gsl_vector_get (s->x, i) );
-	     Rprintf("Extinction (E)  = %10.3e; ", gsl_vector_get (s->x, i) );
+	     printf("Extinction (E)  = %10.3e; ", gsl_vector_get (s->x, i) );
 	   if (i == 2) //printf("Detectability = %10.3e; ", gsl_vector_get (s->x, i) );
-	     Rprintf("Detectability (D) = %10.3e; ", gsl_vector_get (s->x, i) );
+	     printf("Detectability (D) = %10.3e; ", gsl_vector_get (s->x, i) );
 	   if (i == 3) //printf("Phi_0   = %10.3e\t", gsl_vector_get (s->x, i) );
-	     Rprintf("Phi_0 (P)  = %10.3e\t", gsl_vector_get (s->x, i) );
+	     printf("Phi_0 (P)  = %10.3e\t", gsl_vector_get (s->x, i) );
 	 }
 	 //printf("f() = %7.3f size = %.3f\n", s->fval, size);
-	 Rprintf("NLL(C,E,D,P|Data) = %7.3f size = %.3f\n", s->fval, size);
+	 printf("NLL(C,E,D,P|Data) = %7.3f size = %.3f\n", s->fval, size);
        }
 
     }

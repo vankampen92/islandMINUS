@@ -61,7 +61,7 @@ void UPGMA_CLUSTERING_PARTITION( double ** d, int No_of_SPECIES ,
   int * Node_List = (int *)calloc( No_of_SPECIES, sizeof(int) );
   for(i = 0; i < No_of_SPECIES; i++ ) Node_List[i] = i;
 
-  if (N != No_of_SPECIES) { Rprintf("Program aborted\n"); error(0,0,"Program aborted"); }
+  if (N != No_of_SPECIES) { printf("Program aborted\n"); IO_ERROR(0,0,"Program aborted"); }
   No_of_NODES = No_of_SPECIES; //only leaves..
 
   double ** distance  = (double **)calloc( No_of_SPECIES, sizeof(double *) );
@@ -75,29 +75,29 @@ void UPGMA_CLUSTERING_PARTITION( double ** d, int No_of_SPECIES ,
   Print_Triangular_Matrix( distance, No_of_SPECIES );
 #endif
 
-  Rprintf(" About to enter the upgma clustering algorithm...\n");
+  printf(" About to enter the upgma clustering algorithm...\n");
 
   upgma_clustering(distance, No_of_SPECIES,
 		   d, &N, Cluster, &No_of_NODES, Node_List );
 
-  Rprintf(" Just out from the upgma clustering algorithm...\n");
+  printf(" Just out from the upgma clustering algorithm...\n");
   //getchar();
 
 #if defined VERBOSE
-  Rprintf("In Order Display\n");
+  printf("In Order Display\n");
   print_inorder(Cluster[No_of_NODES-1]);
 
-  Rprintf("Pre Order Display\n");
+  printf("Pre Order Display\n");
   print_preorder(Cluster[No_of_NODES-1]);
 
-  Rprintf("Post Order Display\n");
+  printf("Post Order Display\n");
   print_postorder(Cluster[No_of_NODES-1]);
 
-  Rprintf("Print out only all nodes\n");
+  printf("Print out only all nodes\n");
   for(i=0; i<No_of_NODES; i++) {
-    Rprintf("No of Species in cluster %d: %d ( Species: ", i, Cluster[i]->No_of_SPECIES);
-    for(j=0; j<Cluster[i]->No_of_SPECIES; j++) Rprintf("%d ", Cluster[i]->Species[j]);
-    Rprintf(")\n");
+    printf("No of Species in cluster %d: %d ( Species: ", i, Cluster[i]->No_of_SPECIES);
+    for(j=0; j<Cluster[i]->No_of_SPECIES; j++) printf("%d ", Cluster[i]->Species[j]);
+    printf(")\n");
   }
 #endif
 

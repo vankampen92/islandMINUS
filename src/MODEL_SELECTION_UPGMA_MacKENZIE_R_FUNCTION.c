@@ -89,7 +89,7 @@ void MODEL_SELECTION_UPGMA_MacKENZIE_R_FUNCTION ( int * pNo_of_SPECIES,
   for ( i=0; i<No_of_SPECIES; i++ )
     No_of_COLUMNS = MAX( No_of_COLUMNS, No_of_TIMES[i] );
 
-  Rprintf( "Number of Columns: %d\n", No_of_COLUMNS );  //getchar();
+  printf( "Number of Columns: %d\n", No_of_COLUMNS );  //getchar();
 
   n=0;
   for(i=0; i<No_of_SPECIES; i++)
@@ -269,7 +269,7 @@ void MODEL_SELECTION_UPGMA_MacKENZIE_DRIVER (int No_of_SPECIES, char ** Species_
 
     if( (* Verbose) == 1 ) SP_Matrix_Data_Write( Data[i] );
 
-    Rprintf(" Data structure for the %d-th elemental group (%s) is done\n\n",
+    printf(" Data structure for the %d-th elemental group (%s) is done\n\n",
 	    i, Species_Tag[i] );
   }
   /*       E N D :------------------------------------------------------
@@ -313,8 +313,8 @@ void MODEL_SELECTION_UPGMA_MacKENZIE_DRIVER (int No_of_SPECIES, char ** Species_
 
     Total_NLL_Value += NLL_Value[i];
     // if( (*Verbose) == 1) {
-      Rprintf(" Group %d (%s): ", i, Species_Tag[i]);
-      Rprintf(" NLL (Col = %g, Ext = %g, Dtc = %g, P_0 = %g) = %g\n",
+      printf(" Group %d (%s): ", i, Species_Tag[i]);
+      printf(" NLL (Col = %g, Ext = %g, Dtc = %g, P_0 = %g) = %g\n",
 	      Colonization[i], Extinction[i], Detectability[i], Phi_T_0[i],
 	      NLL_Value[i] );
     // }

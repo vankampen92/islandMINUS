@@ -77,13 +77,13 @@ void Vector_Entry_into_Parameter_Model ( double value,
     P->Phi_0 = value;
     break;
   default:
-    Rprintf(" Error from:\n");
-    Rprintf(" Vector_Entry_into_Parameter_Model(...) in Parameter_Model.c\n");
-    Rprintf(" INVALID PARAMETER KEY [key = %d]\n", key);
+    printf(" Error from:\n");
+    printf(" Vector_Entry_into_Parameter_Model(...) in Parameter_Model.c\n");
+    printf(" INVALID PARAMETER KEY [key = %d]\n", key);
     int N = MODEL_PARAMETERS_MAXIMUM;
-    Rprintf(" The maximum number of parameters is %d\n", N);
-    Rprintf(" The permited keys go from 0, to %d\n", N-1);
-    { Rprintf("Program aborted\n"); error(0,0,"Program aborted"); }
+    printf(" The maximum number of parameters is %d\n", N);
+    printf(" The permited keys go from 0, to %d\n", N-1);
+    { printf("Program aborted\n"); IO_ERROR(0,0,"Program aborted"); }
   }
 }
 
@@ -119,13 +119,13 @@ double Parameter_Model_into_Vector_Entry ( int key, Parameter_Model * P )
     value = P->Phi_0;
     break;
   default:
-    Rprintf(" Error from:\n");
-    Rprintf(" Parameter_Model_into_Vector_Entry(...) in Parameter_Model.c\n");
-    Rprintf(" INVALID PARAMETER KEY [key = %d]\n", key);
+    printf(" Error from:\n");
+    printf(" Parameter_Model_into_Vector_Entry(...) in Parameter_Model.c\n");
+    printf(" INVALID PARAMETER KEY [key = %d]\n", key);
     int N = MODEL_PARAMETERS_MAXIMUM;
-    Rprintf(" The maximum number of parameters is %d\n", N);
-    Rprintf(" The permited keys go from 0, to %d\n", N-1);
-    { Rprintf("Program aborted\n"); error(0,0,"Program aborted"); }
+    printf(" The maximum number of parameters is %d\n", N);
+    printf(" The permited keys go from 0, to %d\n", N-1);
+    { printf("Program aborted\n"); IO_ERROR(0,0,"Program aborted"); }
   }
 
   return(value);
