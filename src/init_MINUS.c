@@ -11,6 +11,7 @@ extern void MODEL_SELECTION_UPGMA_R_FUNCTION(void *, void *, void *, void *, voi
 extern void R_SHLIB___mle_MacKenzie_NLLikelihood_Minimization(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
 extern void R_SHLIB___mle_MacKenzie_NLL_Uneven_Minimization(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
 extern void R_SHLIB___mle_NLL_Uneven_Minimization(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
+extern void Counting_Replicates_per_Time(void * , void * , void * , void * , void * );
 
 static const R_CMethodDef CEntries[] = {
     {"MODEL_SELECTION_UPGMA_MacKENZIE_R_FUNCTION",        (DL_FUNC) &MODEL_SELECTION_UPGMA_MacKENZIE_R_FUNCTION,        24},
@@ -18,6 +19,7 @@ static const R_CMethodDef CEntries[] = {
     {"R_SHLIB___mle_MacKenzie_NLLikelihood_Minimization", (DL_FUNC) &R_SHLIB___mle_MacKenzie_NLLikelihood_Minimization, 23},
     {"R_SHLIB___mle_MacKenzie_NLL_Uneven_Minimization",   (DL_FUNC) &R_SHLIB___mle_MacKenzie_NLL_Uneven_Minimization,   24},
     {"R_SHLIB___mle_NLL_Uneven_Minimization",             (DL_FUNC) &R_SHLIB___mle_NLL_Uneven_Minimization,             20},
+    {"Counting_Replicates_per_Time",                      (DL_FUNC) &Counting_Replicates_per_Time,                       5},
     {NULL, NULL, 0}
 };
 

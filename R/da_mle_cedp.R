@@ -130,7 +130,7 @@ da_mle_cedp <- function( Data, Time, Factor, Tags,
         Discretization <- integer(4);    Discretization <- c(No_C, No_E, 1, 1);
   
         Result <- double(3*S);
-        Res <- .C("R_SHLIB___mle_NLLikelihood_Minimization", # PACKAGE="islandMINUS",
+        Res <- .C("R_SHLIB___mle_NLL_Uneven_Minimization", # PACKAGE="islandMINUS",
                   as.integer(S), as.character(Tags),
                   as.double(P), as.integer(Sites), 
                   as.double(Time_Vector), as.integer(No_of_Times),
@@ -146,7 +146,7 @@ da_mle_cedp <- function( Data, Time, Factor, Tags,
   # Result corresponds to the 20th argument of the .C(...) call list. 
   # True arguments are counted from 1 to the last. The first two args are not
   # considered in this count.     
-  # Arg 0 is R_SHLIB___mle_NLLikelihood_Minimization, this is, the name 
+  # Arg 0 is R_SHLIB___mle_NLL_Uneven_Minimization, this is, the name 
   # of the shared object.
         Result  <- Res[[20]];
         
