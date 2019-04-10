@@ -93,8 +93,8 @@ void R_SHLIB___mle_NLL_Uneven_Minimization( int * pNo_of_SPECIES, char ** Specie
   No_of_COLUMNS = No_of_TIMES[0];
   for ( i=0; i<No_of_SPECIES; i++ )
     if ( No_of_COLUMNS != No_of_TIMES[i] ) {
-  	printf( "Number of columns differs from data set to data set: %d\n", No_of_COLUMNS );
-	{ printf("Program aborted\n"); IO_ERROR(0,0,"Program aborted"); }
+  	Rprintf( "Number of columns differs from data set to data set: %d\n", No_of_COLUMNS );
+	{ Rprintf("Program aborted\n"); IO_ERROR(0,0,"Program aborted"); }
     }
 
   n=0;
@@ -180,7 +180,7 @@ void mle_NLLikelihood_Minimization_DRIVER( int No_of_SPECIES, char ** Species_Ta
   /* Warning: No_of_COLUMNS for all data files should match!!!  */
   int No_of_COLUMNS = No_of_TIMES[0];
   for(i=0; i<No_of_SPECIES; i++)
-    if( No_of_COLUMNS != No_of_TIMES[i] ) { printf("Program aborted\n"); IO_ERROR(0,0,"Program aborted"); }
+    if( No_of_COLUMNS != No_of_TIMES[i] ) { Rprintf("Program aborted\n"); IO_ERROR(0,0,"Program aborted"); }
 
   int * Dummy = (int *)calloc(No_of_COLUMNS, sizeof(int)); //Dummy vector!
   //No use in this context. It could handle different replicates (transects)
@@ -231,8 +231,8 @@ void mle_NLLikelihood_Minimization_DRIVER( int No_of_SPECIES, char ** Species_Ta
 				       &NLL_Value[i] );
     Total_NLL_Value += NLL_Value[i];
     if( (*Verbose) == 1) {
-      printf(" Level %d (%s): ", i, Species_Tag[i]);
-      printf(" NLL (Colonization = %g, Extinction = %g) = %g\n",
+      Rprintf(" Level %d (%s): ", i, Species_Tag[i]);
+      Rprintf(" NLL (Colonization = %g, Extinction = %g) = %g\n",
 	     Colonization[i], Extinction[i], NLL_Value[i] );
 
     }
@@ -240,7 +240,7 @@ void mle_NLLikelihood_Minimization_DRIVER( int No_of_SPECIES, char ** Species_Ta
     Results[i][1] = Extinction[i];
     Results[i][2] = NLL_Value[i];
   }
-  if( (*Verbose) == 1) printf(" Total NLL (...) = %g\n", Total_NLL_Value);
+  if( (*Verbose) == 1) Rprintf(" Total NLL (...) = %g\n", Total_NLL_Value);
   /*     E N D : --------------------------------------------------------
    */
   /* B E G I N : -------------------------------------------------------

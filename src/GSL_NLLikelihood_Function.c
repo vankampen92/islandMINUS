@@ -15,7 +15,7 @@ double GSL_NLLikelihood_Function ( const gsl_vector * x, void * Par )
 
   if( F->P->No_of_SPECIES != F->Data->No_of_SPECIES )
     // IO_ERROR(0,0,"Number of Species does not match: program aborted");
-    { printf("Number of Species does not match: "); IO_ERROR(0,0,"Program aborted"); }
+    { Rprintf("Number of Species does not match: "); IO_ERROR(0,0,"Program aborted"); }
 
   Time_Control * T    = F->P->Time;
   int No_of_SPECIES   = F->P->No_of_SPECIES;
@@ -103,20 +103,20 @@ double NLLikelihood_Calculation ( int n, Time_Control * Time,
 	}
 	else {
 #if defined CHECKING_MATRIX_ENTRIES
-	  /* printf(" Error in initial Presence Data\n");             */
-	  /* printf(" when evaluation Neg LogLikelihood\n");          */
-	  /* printf(" in function GSL_NLLikelihood_Function(...)\n"); */
-	  /* printf(" Some matrix entries are not either 0 or 1\n");  */
-	  /* printf(" (see GSL_NLLikelihood_Function.c)\n");          */
-	  /* printf(" The program will exit\n");                      */
-	  printf(" Error in initial Presence Data\n");
-	  printf(" when evaluation Neg LogLikelihood\n");
-	  printf(" in function GSL_NLLikelihood_Function(...)\n");
-	  printf(" Some matrix entries are not either 0 or 1\n");
-	  printf(" (see GSL_NLLikelihood_Function.c)\n");
-	  printf(" The program will exit\n");
+	  /* Rprintf(" Error in initial Presence Data\n");             */
+	  /* Rprintf(" when evaluation Neg LogLikelihood\n");          */
+	  /* Rprintf(" in function GSL_NLLikelihood_Function(...)\n"); */
+	  /* Rprintf(" Some matrix entries are not either 0 or 1\n");  */
+	  /* Rprintf(" (see GSL_NLLikelihood_Function.c)\n");          */
+	  /* Rprintf(" The program will exit\n");                      */
+	  Rprintf(" Error in initial Presence Data\n");
+	  Rprintf(" when evaluation Neg LogLikelihood\n");
+	  Rprintf(" in function GSL_NLLikelihood_Function(...)\n");
+	  Rprintf(" Some matrix entries are not either 0 or 1\n");
+	  Rprintf(" (see GSL_NLLikelihood_Function.c)\n");
+	  Rprintf(" The program will exit\n");
 	  // IO_ERROR(0, 0, "Program has aborted");
-	  printf("Program has aborted: "); IO_ERROR(0,0,"in NLLikelihood_Calculation");
+	  Rprintf("Program has aborted: "); IO_ERROR(0,0,"in NLLikelihood_Calculation");
 #endif
 	}
         NLL += X;
@@ -191,13 +191,13 @@ double NLLikelihood_Calculation_Transition_Probabilities ( int n, Time_Control *
 	else {
 	  if( P_k_1 != 0.1 )
 	    // IO_ERROR(0,0,"Missing Value Problem: program aborted");
-	    { printf("Missing Value Problem: "); IO_ERROR(0,0,"Program aborted"); }
+	    { Rprintf("Missing Value Problem: "); IO_ERROR(0,0,"Program aborted"); }
 	}
       }
       else {
 	  if( P_k_0 != 0.1 )
 	    // IO_ERROR(0,0,"Missing Value Problem: program aborted");
-	    { printf("Missing Value Problem: "); IO_ERROR(0,0,"Program aborted"); }
+	    { Rprintf("Missing Value Problem: "); IO_ERROR(0,0,"Program aborted"); }
       }
     }
   }

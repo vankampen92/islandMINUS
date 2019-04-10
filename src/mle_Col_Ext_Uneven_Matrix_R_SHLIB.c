@@ -69,7 +69,7 @@ void mle_Col_Ext_Uneven_Matrix_R_SHLIB (double ** Presence, int S,
 
   if( (* No_of_PARAMETERS_MAX) != (* No_of_PARAMETERS) )
 	// IO_ERROR(0,0,"Number of Parameters do not match");
-	{ printf("Number of Parameters do not match"); IO_ERROR(0,0,"Program aborted"); }
+	{ Rprintf("Number of Parameters do not match"); IO_ERROR(0,0,"Program aborted"); }
 
   // int No_C, No_E, No_D, No_P;
   // Parameter_Index_Checking_Ordering(Index, Discretization, (* No_of_PARAMETERS_MAX),
@@ -114,9 +114,9 @@ void mle_Col_Ext_Uneven_Matrix_R_SHLIB (double ** Presence, int S,
   else if ( (*Minimization) == 0 )
     (* Value) = GSL_NLL_Function_Uneven( x, F);
   else {
-    printf(" Error in mle_Col_Ext_Uneven_Matrix_R_SHLIB(...) from\n");
-    printf(" file mle_Col_Ext_Uneven_Matrix_R_SHLIB.c\n");
-    printf(" Error in 1/0 Minimization input argument!\n ---> Minimization = %d\n",
+    Rprintf(" Error in mle_Col_Ext_Uneven_Matrix_R_SHLIB(...) from\n");
+    Rprintf(" file mle_Col_Ext_Uneven_Matrix_R_SHLIB.c\n");
+    Rprintf(" Error in 1/0 Minimization input argument!\n ---> Minimization = %d\n",
 	   (*Minimization) );
   }
    Vector_Entries_into_Parameter_Model ( x, P,

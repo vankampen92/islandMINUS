@@ -22,7 +22,7 @@ void Transition_Matrix( double **  T, int Nr, int Nc,
   T[0][1] = T01 = e/(e+c)*(1.0 -exp(-(e+c)*DT));
   T[1][1] = T11 = 1.0 - e/(e+c)*(1.0 -exp(-(e+c)*DT));
 
-  // printf("T00 = %g, T10 = %g, T01 = %g, T11 = %g\n", T00, T10, T01, T11);
+  // Rprintf("T00 = %g, T10 = %g, T01 = %g, T11 = %g\n", T00, T10, T01, T11);
 }
 
 

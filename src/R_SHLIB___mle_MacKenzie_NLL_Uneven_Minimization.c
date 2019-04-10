@@ -46,7 +46,7 @@ void R_SHLIB___mle_MacKenzie_NLL_Uneven_Minimization ( int * pNo_of_SPECIES, cha
   for ( i=0; i<No_of_SPECIES; i++ )
     No_of_COLUMNS = MAX( No_of_COLUMNS, No_of_TIMES[i] );
   if( (*Verbose) == 1)
-    printf( "Number of Columns: %d\n", No_of_COLUMNS );  // getchar();
+    Rprintf( "Number of Columns: %d\n", No_of_COLUMNS );  // getchar();
 
   n=0;
   for(i=0; i<No_of_SPECIES; i++)
@@ -195,7 +195,7 @@ void mle_MacKenzie_NLL_Uneven_Minimization_DRIVER (int No_of_SPECIES, char ** Sp
 
     if( (*Verbose) == 1)  SP_Matrix_Data_Write( Data[i] );
 
-    printf(" Data structure for the %d-th elemental group (%s) is done\n\n",
+    Rprintf(" Data structure for the %d-th elemental group (%s) is done\n\n",
  	    i, Species_Tag[i] );
   }
   /*       E N D :------------------------------------------------------
@@ -226,8 +226,8 @@ void mle_MacKenzie_NLL_Uneven_Minimization_DRIVER (int No_of_SPECIES, char ** Sp
 
     Total_NLL_Value += NLL_Value[i];
     // if( (*Verbose) == 1) {
-      printf(" Group %d (%s): ", i, Species_Tag[i]);
-      printf(" NLL (Col = %g, Ext = %g, Dtc = %g, P_0 = %g) = %g\n",
+      Rprintf(" Group %d (%s): ", i, Species_Tag[i]);
+      Rprintf(" NLL (Col = %g, Ext = %g, Dtc = %g, P_0 = %g) = %g\n",
 	      Colonization[i], Extinction[i], Detectability[i], Phi_T_0[i],
 	      NLL_Value[i] );
     // }
@@ -237,7 +237,7 @@ void mle_MacKenzie_NLL_Uneven_Minimization_DRIVER (int No_of_SPECIES, char ** Sp
     Results[i][3] = Phi_T_0[i];
     Results[i][4] = NLL_Value[i];
   }
-  if( (*Verbose) == 1) printf(" Total NLL (...) = %g\n", Total_NLL_Value);
+  if( (*Verbose) == 1) Rprintf(" Total NLL (...) = %g\n", Total_NLL_Value);
   /*     E N D : --------------------------------------------------------
    */
 

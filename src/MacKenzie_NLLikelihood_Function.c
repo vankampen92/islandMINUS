@@ -2,15 +2,15 @@
 
 void program_exit_for_matrix_corruption(int Sp, int Presence, int Time)
 {
-  /* printf("Species: %d\t State: %d\t Time: %d\n", Sp, Presence, Time);  */
-  /* printf("State can only be either 0 or 1\n"); */
-  /* printf("The program will exit\n"); */
+  /* Rprintf("Species: %d\t State: %d\t Time: %d\n", Sp, Presence, Time);  */
+  /* Rprintf("State can only be either 0 or 1\n"); */
+  /* Rprintf("The program will exit\n"); */
   /* IO_ERROR(0,0, "Program aborted"); */
 
-  printf("Species: %d\t State: %d\t Time: %d\n", Sp, Presence, Time);
-  printf("State can only be either 0 or 1\n");
-  printf("The program will exit\n");
-  printf("Program aborted...");  IO_ERROR(0,0,"Program aborted");
+  Rprintf("Species: %d\t State: %d\t Time: %d\n", Sp, Presence, Time);
+  Rprintf("State can only be either 0 or 1\n");
+  Rprintf("The program will exit\n");
+  Rprintf("Program aborted...");  IO_ERROR(0,0,"Program aborted");
 
 }
 
@@ -24,10 +24,10 @@ int Determining_Total_No_of_Absences (double * Presence_Data, int N,
   for(i=0; i<n; i++) {
     m = 0;
     for (j=n_0; j<(n_0+Transects[i]); j++) {
-      if ( j >= N ) printf(" j = %d\t N = %d\n", j, N);
+      if ( j >= N ) Rprintf(" j = %d\t N = %d\n", j, N);
       if( j >= N )
 	// IO_ERROR(0,0, "Program aborted");
-	{ printf("Program will abort..."); IO_ERROR(0,0,"Program aborted"); }
+	{ Rprintf("Program will abort..."); IO_ERROR(0,0,"Program aborted"); }
       if (Presence_Data[j] == 0.0) m++;
     }
     if( m == Transects[i] ) Time_Index[k++] = i;
@@ -128,7 +128,7 @@ double MacKenzie_NLLikelihood_Calculation ( double ** Presence_Data, int No_of_S
           for(n=0; n<Transects[0]; n++) if (Presence_Data[j][n] == 0.0) m++;
           if (m != Transects[0])
           //IO_ERROR(0,0,"Number of Transects does not match");
-          { printf("Number of Transects does not match"); IO_ERROR(0,0,"Program aborted"); }
+          { Rprintf("Number of Transects does not match"); IO_ERROR(0,0,"Program aborted"); }
 
           Y += logl( 1.0 - (long double)Phi_0 );
         }
@@ -159,10 +159,10 @@ double MacKenzie_NLLikelihood_Calculation ( double ** Presence_Data, int No_of_S
           /* Transiction: k_0 ---> k_1 */
           k_0 = Presence[i-1];    if( k_0 != 0 && k_0 != 1 )
 				    // IO_ERROR(0,0,"Program aborted");
-				    { printf("Program will abort...");  IO_ERROR(0,0,"Program aborted"); }
+				    { Rprintf("Program will abort...");  IO_ERROR(0,0,"Program aborted"); }
             k_1 = Presence[i];      if( k_1 != 0 && k_1 != 1 )
 				    // IO_ERROR(0,0,"Program aborted");
-				    { printf("Program will abort...");  IO_ERROR(0,0,"Program aborted"); }
+				    { Rprintf("Program will abort...");  IO_ERROR(0,0,"Program aborted"); }
 
             Y += logl( (long double)TM[k_1][k_0] ) ;
 
@@ -172,7 +172,7 @@ double MacKenzie_NLLikelihood_Calculation ( double ** Presence_Data, int No_of_S
               for(n = n_0; n<(n_0+Transects[i]); n++) if (Presence_Data[j][n] == 0.0) m++;
               if ( m != Transects[i] )
               // IO_ERROR(0,0,"Number of Transects do not match");
-              { printf("Number of Transects do not match"); IO_ERROR(0,0,"Program aborted"); }
+              { Rprintf("Number of Transects do not match"); IO_ERROR(0,0,"Program aborted"); }
             }
             else if (Presence[i] == 1) {
               m = 0;
@@ -184,7 +184,7 @@ double MacKenzie_NLLikelihood_Calculation ( double ** Presence_Data, int No_of_S
 
               if(Transects[i] < m)
               // IO_ERROR(0,0, "Program aborted");
-              { printf("Program will abort...");  IO_ERROR(0,0,"Program aborted"); }
+              { Rprintf("Program will abort...");  IO_ERROR(0,0,"Program aborted"); }
               //X += log(Combinarory(m, Transects[0]));
             }
             else {
@@ -196,7 +196,7 @@ double MacKenzie_NLLikelihood_Calculation ( double ** Presence_Data, int No_of_S
             n_0 += Transects[i];
             if( i == (T-1) ) if( n_0 != N )
             // IO_ERROR(0,0, "Program aborted");
-            { printf("Program will abort...");  IO_ERROR(0,0,"Program aborted"); }
+            { Rprintf("Program will abort...");  IO_ERROR(0,0,"Program aborted"); }
         }
         free(Presence);
 
@@ -205,7 +205,7 @@ double MacKenzie_NLLikelihood_Calculation ( double ** Presence_Data, int No_of_S
 
         if( Y >= 0.0 )
         // IO_ERROR(0,0, "Program aborted");
-        { printf("Program will abort...");  IO_ERROR(0,0,"Program aborted"); }
+        { Rprintf("Program will abort...");  IO_ERROR(0,0,"Program aborted"); }
       }
 
       free(Time_Index);

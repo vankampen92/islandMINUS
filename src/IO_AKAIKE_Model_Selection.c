@@ -73,21 +73,21 @@ void Model_Selection_AIC_Latex_Table( char ** Name,
   }
 
   for(i=0; i<No_of_SPECIES; i++) {
-    // printf(" Partition %d-th: Number of estimated parameters: %d\n", i, G[i]*2);
-    printf(" Partition %d-th: Number of estimated parameters: %d\n", i, G[i]*2);
+    // Rprintf(" Partition %d-th: Number of estimated parameters: %d\n", i, G[i]*2);
+    Rprintf(" Partition %d-th: Number of estimated parameters: %d\n", i, G[i]*2);
     for(j=0; j<G[i]; j++) {
-      // printf("{ ");
-      printf("{ ");
-      for(k=0; k<K[i][j]; k++) printf("%s ", Name[PARTITION[i][j][k]]);
-      // printf("} ");
-      printf("} ");
+      // Rprintf("{ ");
+      Rprintf("{ ");
+      for(k=0; k<K[i][j]; k++) Rprintf("%s ", Name[PARTITION[i][j][k]]);
+      // Rprintf("} ");
+      Rprintf("} ");
     }
-    /* printf("\n");                                                                       */
-    /* printf(" NLL = %g\t AIC = %g\tAIC (corrected) = %g\t", NLL[i], AIC[i], AIC_c[i]);   */
-    /* printf(" AIC_d = %g\t AIC_w = %g\n", AIC_d[i], AIC_w[i] );                          */
-    printf("\n");
-    printf(" NLL = %g\t AIC = %g\tAIC (corrected) = %g\t", NLL[i], AIC[i], AIC_c[i]);
-    printf(" AIC_d = %g\t AIC_w = %g\n", AIC_d[i], AIC_w[i] );
+    /* Rprintf("\n");                                                                       */
+    /* Rprintf(" NLL = %g\t AIC = %g\tAIC (corrected) = %g\t", NLL[i], AIC[i], AIC_c[i]);   */
+    /* Rprintf(" AIC_d = %g\t AIC_w = %g\n", AIC_d[i], AIC_w[i] );                          */
+    Rprintf("\n");
+    Rprintf(" NLL = %g\t AIC = %g\tAIC (corrected) = %g\t", NLL[i], AIC[i], AIC_c[i]);
+    Rprintf(" AIC_d = %g\t AIC_w = %g\n", AIC_d[i], AIC_w[i] );
   }
 
   double ** VALUE = (double **)calloc( No_of_SPECIES, sizeof(double *) );
@@ -115,8 +115,8 @@ void Model_Selection_AIC_Latex_Table( char ** Name,
     strcat( Row_Name[i], Num );
     strcat( Row_Name[i], "-parameter model" );
 
-    // printf("Using point p for something: %s", p);
-		// printf("\n");
+    // Rprintf("Using point p for something: %s", p);
+		// Rprintf("\n");
   }
   char ** Column_Name = (char **)calloc( 6, sizeof(char *) );
   for(i=0; i<6; i++) {
@@ -136,13 +136,13 @@ void Model_Selection_AIC_Latex_Table( char ** Name,
     case 5: strcat( Column_Name[i], "AIC weights" );
       break;
     default:
-      // printf(" Index j = %d out of range (0,...,5) (Model Selection Latex Table Function)\n", j);
-      printf(" Index j = %d out of range (0,...,5) (Model Selection Latex Table Function)\n", j);
+      // Rprintf(" Index j = %d out of range (0,...,5) (Model Selection Latex Table Function)\n", j);
+      Rprintf(" Index j = %d out of range (0,...,5) (Model Selection Latex Table Function)\n", j);
       // IO_ERROR(0,0, "Program aborted");
-      // printf("Program will abort...");
+      // Rprintf("Program will abort...");
 			IO_ERROR(0,0,"Program aborted");
     }
-    // printf("Using point p for something: %s", p); printf("\n");
+    // Rprintf("Using point p for something: %s", p); Rprintf("\n");
   }
 
   Latex_Table_Driver( "Model_Selection_Results.tex",
@@ -175,11 +175,11 @@ void Model_Selection_AIC_Latex_Table( char ** Name,
       break;
     default:
       //printf(" Index i = %d out of range (0,1,2) (Model Selection Latex Table Function)\n", j);
-      printf(" Index i = %d out of range (0,1,2) (Model Selection Latex Table Function)\n", j);
+      Rprintf(" Index i = %d out of range (0,1,2) (Model Selection Latex Table Function)\n", j);
       IO_ERROR(0,0,"Program aborted");
-      // printf("Program will abort..."); IO_ERROR(0,0,"Program aborted");
+      // Rprintf("Program will abort..."); IO_ERROR(0,0,"Program aborted");
     }
-    // printf("Using point p for something: %s", p); printf("\n");
+    // Rprintf("Using point p for something: %s", p); Rprintf("\n");
   }
   Row_Name = (char **)calloc( G[min_i], sizeof(char *) );
   for(j=0; j<G[min_i]; j++) {
@@ -192,7 +192,7 @@ void Model_Selection_AIC_Latex_Table( char ** Name,
     }
 		strcat( Row_Name[j], " }" );
 
-    // printf("Using point p for something: %s", p); printf("\n");
+    // Rprintf("Using point p for something: %s", p); Rprintf("\n");
   }
   Latex_Table_Driver ( "Best_Model_Colonization_Extinction_Results.tex",
 		       G[min_i], 3, Row_Name, Column_Name, VALUE );

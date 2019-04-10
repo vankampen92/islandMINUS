@@ -65,8 +65,8 @@ void MODEL_SELECTION_UPGMA_R_FUNCTION( int * pNo_of_SPECIES, char ** Species_Tag
   int No_of_COLUMNS;
   No_of_COLUMNS = No_of_TIMES[0];
   for ( i=0; i<No_of_SPECIES; i++ )
-    if ( No_of_COLUMNS != No_of_TIMES[i] ) { printf("Program aborted\n"); IO_ERROR(0,0,"Program aborted"); }
-  printf( "Number of Columns: %d\n", No_of_COLUMNS );
+    if ( No_of_COLUMNS != No_of_TIMES[i] ) { Rprintf("Program aborted\n"); IO_ERROR(0,0,"Program aborted"); }
+  Rprintf( "Number of Columns: %d\n", No_of_COLUMNS );
 
   n=0;
   for(i=0; i<No_of_SPECIES; i++)
@@ -160,7 +160,7 @@ void MODEL_SELECTION_UPGMA_DRIVER ( int No_of_SPECIES, char ** Species_Tag,
   /* Warning: No_of_COLUMNS for all data files should match!!!  */
   int No_of_COLUMNS = No_of_TIMES[0];
   for(i=0; i<No_of_SPECIES; i++) if( No_of_COLUMNS != No_of_TIMES[i] )
-				   { printf("Program aborted\n"); IO_ERROR(0,0,"Program aborted"); }
+				   { Rprintf("Program aborted\n"); IO_ERROR(0,0,"Program aborted"); }
 
   int * Dummy;
   //No use in this context. It could handle different replicates (transects)
@@ -212,8 +212,8 @@ void MODEL_SELECTION_UPGMA_DRIVER ( int No_of_SPECIES, char ** Species_Tag,
 				       &NLL_Value[i] );
     Total_NLL_Value += NLL_Value[i];
     if( (*Verbose) == 1) {
-      printf(" File %d (%s): ", i, Species_Tag[i]);
-      printf(" NLL (Colonization = %g, Extinction = %g) = %g\n",
+      Rprintf(" File %d (%s): ", i, Species_Tag[i]);
+      Rprintf(" NLL (Colonization = %g, Extinction = %g) = %g\n",
 	     Colonization[i], Extinction[i], NLL_Value[i] );
     }
   }

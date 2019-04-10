@@ -15,7 +15,7 @@ void IO_ERROR( int n_0, int n_1, char * Exit_Message)
 
 void IO_ERROR( int n_0, int n_1, char * Exit_Message)
 {
-  printf("---> Immediate Exit: %s\n", Exit_Message);
+  Rprintf("---> Immediate Exit: %s\n", Exit_Message);
   exit(1);
 }
 #endif

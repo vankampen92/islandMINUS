@@ -15,8 +15,8 @@ void Counting_Type_of_Transitions( double ** Presence, int S,
 	  else if (Presence[i][j-1] == 0.0 && Presence[i][j] == 1.0) { n10++; }
 	  else if (Presence[i][j-1] == 1.0 && Presence[i][j] == 0.0) { n01++; }
 	  else if (Presence[i][j-1] == 1.0 && Presence[i][j] == 1.0) { n11++; }
-	  // else    { printf(" Error in Counting_Type_of_Transitions(...). Program will abort!!!\n"); exit(1); }
-	  else    { printf(" Error in Counting_Type_of_Transitions(...)\n"); IO_ERROR(0,0,"Program aborted"); }
+	  // else    { Rprintf(" Error in Counting_Type_of_Transitions(...). Program will abort!!!\n"); exit(1); }
+	  else    { Rprintf(" Error in Counting_Type_of_Transitions(...)\n"); IO_ERROR(0,0,"Program aborted"); }
 	}
       }
 
