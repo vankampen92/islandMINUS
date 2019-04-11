@@ -14,8 +14,7 @@ double GSL_NLLikelihood_Function ( const gsl_vector * x, void * Par )
   Parameter_Fitting * F = (Parameter_Fitting *)Par;
 
   if( F->P->No_of_SPECIES != F->Data->No_of_SPECIES )
-    // IO_ERROR(0,0,"Number of Species does not match: program aborted");
-    { Rprintf("Number of Species does not match: "); IO_ERROR(0,0,"Program aborted"); }
+  { Rprintf("Number of Species does not match: "); error(0,0,"Program aborted"); }
 
   Time_Control * T    = F->P->Time;
   int No_of_SPECIES   = F->P->No_of_SPECIES;
@@ -115,8 +114,8 @@ double NLLikelihood_Calculation ( int n, Time_Control * Time,
 	  Rprintf(" Some matrix entries are not either 0 or 1\n");
 	  Rprintf(" (see GSL_NLLikelihood_Function.c)\n");
 	  Rprintf(" The program will exit\n");
-	  // IO_ERROR(0, 0, "Program has aborted");
-	  Rprintf("Program has aborted: "); IO_ERROR(0,0,"in NLLikelihood_Calculation");
+	  // error(0, 0, "Program has aborted");
+	  Rprintf("Program has aborted: "); error(0,0,"in NLLikelihood_Calculation");
 #endif
 	}
         NLL += X;
@@ -180,24 +179,23 @@ double NLLikelihood_Calculation_Transition_Probabilities ( int n, Time_Control *
       P_k_1 = Presence_Data[j][i];
 
       if  (P_k_0 == 0.0 || P_k_0 == 1.0 ) {
-	if  (P_k_1 == 0.0 || P_k_1 == 1.0 ) {
+        if  (P_k_1 == 0.0 || P_k_1 == 1.0 ) {
 
-	  k_0 = (int)Presence_Data[j][i-1];
-	  k_1 = (int)Presence_Data[j][i];
+          k_0 = (int)Presence_Data[j][i-1];
+          k_1 = (int)Presence_Data[j][i];
 
-	  X += log(TM[k_1][k_0]);
+          X += log(TM[k_1][k_0]);
 
-	}
-	else {
-	  if( P_k_1 != 0.1 )
-	    // IO_ERROR(0,0,"Missing Value Problem: program aborted");
-	    { Rprintf("Missing Value Problem: "); IO_ERROR(0,0,"Program aborted"); }
-	}
+        }
+        else {
+          if( P_k_1 != 0.1 )
+          { Rprintf("Missing Value Problem: "); error(0,0,"Program aborted"); }
+        }
       }
       else {
-	  if( P_k_0 != 0.1 )
-	    // IO_ERROR(0,0,"Missing Value Problem: program aborted");
-	    { Rprintf("Missing Value Problem: "); IO_ERROR(0,0,"Program aborted"); }
+        if( P_k_0 != 0.1 )
+        // error(0,0,"Missing Value Problem: program aborted");
+        { Rprintf("Missing Value Problem: "); error(0,0,"Program aborted"); }
       }
     }
   }

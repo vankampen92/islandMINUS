@@ -8,8 +8,8 @@ da_mle_cedp(Data, Time, Factor, Tags, Colonization = 1, Extinction = 1,
   Detectability_Value = 0.5, Phi_Time_0_Value = 0.5, Tol = 1e-08,
   MIT = 100, C_MAX = 10, C_min = 0, E_MAX = 10, E_min = 0,
   D_MAX = 0.99, D_min = 0, P_MAX = 0.99, P_min = 0.01, I_0 = 0,
-  I_1 = 1, I_2 = 2, I_3 = 3, z = 2, Minimization = 1, Verbose = 0,
-  MV_FLAG = 0.1, PerfectDetectability = TRUE)
+  I_1 = 1, I_2 = 2, I_3 = 3, z = 2, Minimization = 1,
+  Verbose = 0, MV_FLAG = 0.1, PerfectDetectability = TRUE)
 }
 \arguments{
 \item{Data}{data frame containing presence data per time (in cols) and sites (in rows)}

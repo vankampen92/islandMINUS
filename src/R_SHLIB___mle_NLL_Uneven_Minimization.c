@@ -94,7 +94,7 @@ void R_SHLIB___mle_NLL_Uneven_Minimization( int * pNo_of_SPECIES, char ** Specie
   for ( i=0; i<No_of_SPECIES; i++ )
     if ( No_of_COLUMNS != No_of_TIMES[i] ) {
   	Rprintf( "Number of columns differs from data set to data set: %d\n", No_of_COLUMNS );
-	{ Rprintf("Program aborted\n"); IO_ERROR(0,0,"Program aborted"); }
+	{ Rprintf("Program aborted\n"); error(0,0,"Program aborted"); }
     }
 
   n=0;
@@ -180,7 +180,7 @@ void mle_NLLikelihood_Minimization_DRIVER( int No_of_SPECIES, char ** Species_Ta
   /* Warning: No_of_COLUMNS for all data files should match!!!  */
   int No_of_COLUMNS = No_of_TIMES[0];
   for(i=0; i<No_of_SPECIES; i++)
-    if( No_of_COLUMNS != No_of_TIMES[i] ) { Rprintf("Program aborted\n"); IO_ERROR(0,0,"Program aborted"); }
+    if( No_of_COLUMNS != No_of_TIMES[i] ) { Rprintf("Program aborted\n"); error(0,0,"Program aborted"); }
 
   int * Dummy = (int *)calloc(No_of_COLUMNS, sizeof(int)); //Dummy vector!
   //No use in this context. It could handle different replicates (transects)

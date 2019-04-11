@@ -9,6 +9,8 @@
 #include <assert.h>
 #include <limits.h>
 
+#include <R.h>
+
 #include <gsl/gsl_sf.h>
 #include <gsl/gsl_math.h>
 #include <gsl/gsl_vector.h>
@@ -25,5 +27,3 @@
 #define MAX(A,B) ((A)>(B)? A:B)
 #define MIN(A,B) ((A)<(B)? A:B)
 #endif
-
-void IO_ERROR( int n_0, int n_1, char * Exit_Message); 

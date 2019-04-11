@@ -267,10 +267,11 @@ void MODEL_SELECTION_UPGMA_MacKENZIE_DRIVER (int No_of_SPECIES, char ** Species_
 				 Sp_Time[i], Sp_No_of_Times[i],
 				 Sp_Transect[i], Sp_No_of_Transects[i] );
 
-    if( (* Verbose) == 1 ) SP_Matrix_Data_Write( Data[i] );
-
-    Rprintf(" Data structure for the %d-th elemental group (%s) is done\n\n",
-	    i, Species_Tag[i] );
+    if( (* Verbose) == 1 ) {
+      SP_Matrix_Data_Write( Data[i] );
+      Rprintf(" Data structure for the %d-th elemental group (%s) is done\n\n",
+	      i, Species_Tag[i] );
+    }
   }
   /*       E N D :------------------------------------------------------
    */

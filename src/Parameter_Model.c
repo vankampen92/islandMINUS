@@ -83,7 +83,7 @@ void Vector_Entry_into_Parameter_Model ( double value,
     int N = MODEL_PARAMETERS_MAXIMUM;
     Rprintf(" The maximum number of parameters is %d\n", N);
     Rprintf(" The permited keys go from 0, to %d\n", N-1);
-    { Rprintf("Program aborted\n"); IO_ERROR(0,0,"Program aborted"); }
+    { Rprintf("Program aborted\n"); error(0,0,"Program aborted"); }
   }
 }
 
@@ -125,7 +125,7 @@ double Parameter_Model_into_Vector_Entry ( int key, Parameter_Model * P )
     int N = MODEL_PARAMETERS_MAXIMUM;
     Rprintf(" The maximum number of parameters is %d\n", N);
     Rprintf(" The permited keys go from 0, to %d\n", N-1);
-    { Rprintf("Program aborted\n"); IO_ERROR(0,0,"Program aborted"); }
+    { Rprintf("Program aborted\n"); error(0,0,"Program aborted"); }
   }
 
   return(value);

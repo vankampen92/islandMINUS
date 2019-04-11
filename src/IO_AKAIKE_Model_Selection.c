@@ -73,18 +73,13 @@ void Model_Selection_AIC_Latex_Table( char ** Name,
   }
 
   for(i=0; i<No_of_SPECIES; i++) {
-    // Rprintf(" Partition %d-th: Number of estimated parameters: %d\n", i, G[i]*2);
-    Rprintf(" Partition %d-th: Number of estimated parameters: %d\n", i, G[i]*2);
+      Rprintf(" Partition %d-th: Number of estimated parameters: %d\n", i, G[i]*2);
     for(j=0; j<G[i]; j++) {
-      // Rprintf("{ ");
       Rprintf("{ ");
       for(k=0; k<K[i][j]; k++) Rprintf("%s ", Name[PARTITION[i][j][k]]);
-      // Rprintf("} ");
+
       Rprintf("} ");
     }
-    /* Rprintf("\n");                                                                       */
-    /* Rprintf(" NLL = %g\t AIC = %g\tAIC (corrected) = %g\t", NLL[i], AIC[i], AIC_c[i]);   */
-    /* Rprintf(" AIC_d = %g\t AIC_w = %g\n", AIC_d[i], AIC_w[i] );                          */
     Rprintf("\n");
     Rprintf(" NLL = %g\t AIC = %g\tAIC (corrected) = %g\t", NLL[i], AIC[i], AIC_c[i]);
     Rprintf(" AIC_d = %g\t AIC_w = %g\n", AIC_d[i], AIC_w[i] );
@@ -114,9 +109,6 @@ void Model_Selection_AIC_Latex_Table( char ** Name,
     sprintf( Num, "%d", No_of_PARAMETERS );
     strcat( Row_Name[i], Num );
     strcat( Row_Name[i], "-parameter model" );
-
-    // Rprintf("Using point p for something: %s", p);
-		// Rprintf("\n");
   }
   char ** Column_Name = (char **)calloc( 6, sizeof(char *) );
   for(i=0; i<6; i++) {
@@ -136,14 +128,10 @@ void Model_Selection_AIC_Latex_Table( char ** Name,
     case 5: strcat( Column_Name[i], "AIC weights" );
       break;
     default:
-      // Rprintf(" Index j = %d out of range (0,...,5) (Model Selection Latex Table Function)\n", j);
       Rprintf(" Index j = %d out of range (0,...,5) (Model Selection Latex Table Function)\n", j);
-      // IO_ERROR(0,0, "Program aborted");
-      // Rprintf("Program will abort...");
-			IO_ERROR(0,0,"Program aborted");
+			error(0,0,"Program aborted");
     }
-    // Rprintf("Using point p for something: %s", p); Rprintf("\n");
-  }
+	}
 
   Latex_Table_Driver( "Model_Selection_Results.tex",
 		      No_of_SPECIES, 6, Row_Name, Column_Name, VALUE );
@@ -174,13 +162,11 @@ void Model_Selection_AIC_Latex_Table( char ** Name,
     case 2: strcat( Column_Name[i], "Colonization Rate" );
       break;
     default:
-      //printf(" Index i = %d out of range (0,1,2) (Model Selection Latex Table Function)\n", j);
-      Rprintf(" Index i = %d out of range (0,1,2) (Model Selection Latex Table Function)\n", j);
-      IO_ERROR(0,0,"Program aborted");
-      // Rprintf("Program will abort..."); IO_ERROR(0,0,"Program aborted");
+		Rprintf(" Index i = %d out of range (0,1,2) (Model Selection Latex Table Function)\n", j);
+      error(0,0,"Program aborted");
+
     }
-    // Rprintf("Using point p for something: %s", p); Rprintf("\n");
-  }
+	}
   Row_Name = (char **)calloc( G[min_i], sizeof(char *) );
   for(j=0; j<G[min_i]; j++) {
     Row_Name[j] = (char *)calloc( 50, sizeof(char) );
@@ -191,8 +177,6 @@ void Model_Selection_AIC_Latex_Table( char ** Name,
       strcat( Row_Name[j], " ");
     }
 		strcat( Row_Name[j], " }" );
-
-    // Rprintf("Using point p for something: %s", p); Rprintf("\n");
   }
   Latex_Table_Driver ( "Best_Model_Colonization_Extinction_Results.tex",
 		       G[min_i], 3, Row_Name, Column_Name, VALUE );

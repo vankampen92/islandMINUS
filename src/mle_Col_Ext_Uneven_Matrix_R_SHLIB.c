@@ -68,8 +68,7 @@ void mle_Col_Ext_Uneven_Matrix_R_SHLIB (double ** Presence, int S,
   Parameter_Space_Alloc_R_SHLIB( Space, (* No_of_PARAMETERS), Discretization);
 
   if( (* No_of_PARAMETERS_MAX) != (* No_of_PARAMETERS) )
-	// IO_ERROR(0,0,"Number of Parameters do not match");
-	{ Rprintf("Number of Parameters do not match"); IO_ERROR(0,0,"Program aborted"); }
+	{ Rprintf("Number of Parameters do not match"); error(0,0,"Program aborted"); }
 
   // int No_C, No_E, No_D, No_P;
   // Parameter_Index_Checking_Ordering(Index, Discretization, (* No_of_PARAMETERS_MAX),

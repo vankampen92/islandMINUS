@@ -61,7 +61,7 @@ void UPGMA_CLUSTERING_PARTITION( double ** d, int No_of_SPECIES ,
   int * Node_List = (int *)calloc( No_of_SPECIES, sizeof(int) );
   for(i = 0; i < No_of_SPECIES; i++ ) Node_List[i] = i;
 
-  if (N != No_of_SPECIES) { Rprintf("Program aborted\n"); IO_ERROR(0,0,"Program aborted"); }
+  if (N != No_of_SPECIES) { Rprintf("Program aborted\n"); error(0,0,"Program aborted"); }
   No_of_NODES = No_of_SPECIES; //only leaves..
 
   double ** distance  = (double **)calloc( No_of_SPECIES, sizeof(double *) );

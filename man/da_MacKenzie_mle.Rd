@@ -6,11 +6,11 @@
 parameters (with impecfect detectability)}
 \usage{
 da_MacKenzie_mle(Data, Time, Transects, Colonization = 0.1,
-  Extinction = 0.1, Detectability = 0.99, Phi_Time_0 = 0.5, Tol = 1e-06,
-  MIT = 100, C_MAX = 2, C_min = 0, E_MAX = 2, E_min = 0,
-  D_MAX = 0.999, D_min = 0.001, P_MAX = 0.999, P_min = 0.001, I_0 = 0,
-  I_1 = 1, I_2 = 2, I_3 = 3, z = 4, Verbose = 0,
-  Minimization = TRUE)
+  Extinction = 0.1, Detectability = 0.99, Phi_Time_0 = 0.5,
+  Tol = 1e-06, MIT = 100, C_MAX = 2, C_min = 0, E_MAX = 2,
+  E_min = 0, D_MAX = 0.999, D_min = 0.001, P_MAX = 0.999,
+  P_min = 0.001, I_0 = 0, I_1 = 1, I_2 = 2, I_3 = 3, z = 4,
+  Verbose = 0, Minimization = TRUE)
 }
 \arguments{
 \item{Data}{S x N matrix containing presence data per transect (in cols):}
